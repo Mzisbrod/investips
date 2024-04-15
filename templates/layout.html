@@ -15,33 +15,31 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
       <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
 
-      <title>Welcome to Investips!</title>
+      <title>InvesTIPS</title>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="/hello">Investips</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-              <a class="nav-link" href="/">Basics</a>
-              <a class="nav-link" href="/hello/class">Risk vs. Reward</a>
-              <a class="nav-link" href="/people">Power of Compounding</a>
-              <a class="nav-link" href="/people">Final Quiz</a>
-          </div>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-nav mr-auto">
+            <a class="nav-link" href="{{ url_for('class_info', class_name='basics') }}">Basics</a>
+            <a class="nav-link" href="{{ url_for('class_info', class_name='risk_vs_reward') }}">Risk vs. Reward</a>
+            <a class="nav-link" href="{{ url_for('class_info', class_name='compounding') }}">Power of Compounding</a>
+            <a class="nav-link" href="/#">Final Quiz</a>
         </div>
-      </div>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        </div>
     </nav>
-
     <div class="container">
         {% block content %}
         {% endblock %}
     </div>
   </body>
 </html>
-
-
-
-
