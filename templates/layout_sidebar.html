@@ -19,17 +19,17 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">invesTIPS</a>
+        <a class="navbar-brand" href="/">invesTIPS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-    
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav mr-auto">
             <a class="nav-link" href="{{ url_for('class_info', class_name='basics') }}">Basics</a>
             <a class="nav-link" href="{{ url_for('class_info', class_name='risk_vs_reward') }}">Risk vs. Reward</a>
             <a class="nav-link" href="{{ url_for('class_info', class_name='compounding') }}">Power of Compounding</a>
-            <a class="nav-link" href="/#">Final Quiz</a>
+            <a class="nav-link" href="{{ url_for('quiz_info', quiz_name='final') }}">Final Quiz</a>
         </div>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -38,9 +38,25 @@
         </div>
     </nav>
 
-    <div class="container center">
-        {% block content %}
-        {% endblock %}
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar">
+                <a class="active">Class</a>
+                <a href="#home">Pop Quiz</a>
+                <a href="#news">Lesson 1</a>
+                <a href="#contact">Lesson 2</a>
+                <a href="#about">Quiz</a>
+            </div>
+
+            <!-- Content -->
+            <div class="col-md-10">
+                <div class="content center">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
     </div>
   </body>
 </html>
