@@ -51,20 +51,36 @@ quizzes_content = {
     },
 }
 
-quizzes_score = {
+class_quizzes_content = {
     'basics': {
-        'score': '0',
+        'title': 'Basics',
+        'text_content': 'HTML is the standard markup language for creating Web pages.',
+        'video_content': 'https://www.example.com/html_intro_video'
     },
     'risk_vs_reward': {
-        'score': '0',
+        'title': 'Risk vs. Reward',
+        'class_quiz': {
+            'question': "Class Quiz Test 1 ",
+            'options': {
+                'A': "",
+                'B': ""
+            },
+            'correct_answer': 'A',
+            'question_id': 'risk_vs_reward_01' 
+        },
     },
 
     'compounding': {
-         'score': '0',
+        'title': 'Power of Compounding',
+        'text_content': 'CSS is a language that describes the style of an HTML document.',
+        'video_content': 'https://www.example.com/css_intro_video'
     },
     'final': {
-         'score': '0',
+        'title': 'Final Quiz',
+        'text_content': 'CSS is a language that describes the style of an HTML document.',
+        'video_content': 'https://www.example.com/css_intro_video'
     },
+    
 
 }
 
@@ -114,9 +130,20 @@ def pop_quiz(class_name):
     else:
         return "Pop Quiz not found", 404
     
+    
 @app.route('/lesson/<int:lesson_number>')
 def lesson(lesson_number):
     return render_template('lesson.html', lesson_number=lesson_number)
+
+@app.route('/class/<class_name>/class_quiz')
+def class_quiz(class_name):
+    class_content = class_quizzes_content.get(class_name)  
+    
+    return render_template('quiz.html', content=class_content)
+
+    
+
+
 
 
 
