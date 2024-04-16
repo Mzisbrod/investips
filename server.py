@@ -51,6 +51,23 @@ quizzes_content = {
     },
 }
 
+quizzes_score = {
+    'basics': {
+        'score': '0',
+    },
+    'risk_vs_reward': {
+        'score': '0',
+    },
+
+    'compounding': {
+         'score': '0',
+    },
+    'final': {
+         'score': '0',
+    },
+
+}
+
 app = Flask(__name__)
 
 @app.route('/')
