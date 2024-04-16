@@ -1,0 +1,48 @@
+{% extends "layout_sidebar.html" %}
+{% block content %}
+<div class="center">
+    <h1>{{ content.title }}</h1>
+    <div class="mt-4 mb-5">
+        <h2>Pop Quiz</h2>
+        <div class="container mt-3">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">{{ content.pop_quiz.question }}</p>
+                    <p>Option A: Doubles your $100 investment in a year, An AI startup company<br>
+                        Option B: Doubles your $100 investment in 3 years, Similar to Apple Inc.<br> <br>
+                        Which one seems riskier?
+                    </p>
+                    <div class="row">
+                        {% for option_key, option_desc in content.pop_quiz.options.items() %}
+                        <div class="col-md-6">
+                            <div class="border p-3 mb-3">
+                                <button class="btn btn-primary" onclick="recordChoice('{{ option_key }}')" style="display: inline-block;">Option {{ option_key }}</button>
+                                <p>{{ option_desc }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-4">
+                        <button class="btn btn-secondary" onclick="window.location.href='{{ url_for('lesson', lesson_number=1) }}'">Next: Lesson 1</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function recordChoice(choice) {
+    let correct = "{{ content.pop_quiz.correct_answer }}";
+    
+    if (choice === correct) {
+        alert('You are right!');
+        
+    } else {
+        alert('Almost! Company A is riskier - let’s learn why');
+        
+    }
+}
+</script>
+<br>
+{% endblock %}

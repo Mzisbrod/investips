@@ -1,7 +1,15 @@
 {% extends "layout_sidebar.html" %}
 {% block content %}
-    <div><h1>{{ content.title }}</h1></div>
-    <br>
+<div class="center">
+    <h1>{{ content.title }}</h1>
+    <p>{{ content.text_content }}</p>
+    <div class="text-right">
+        <a href="/class/next_class_name" class="btn btn-outline-secondary">
+            Next <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+<br>
 {% endblock %}
 
 
