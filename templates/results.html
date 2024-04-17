@@ -2,7 +2,17 @@
 {% block content %}
 
 <script>
-    
+    $(document).ready(function() {
+        var score = {{ content.total_score }};
+        var message = '';
+        if (score == 0) {
+            message = 'Better luck next time!';
+        } else if (score == 1) {
+            message = 'Good job!';
+        }
+        $('#results_reaction_tbx').text(message);
+    });
+
 
 
 </script>
