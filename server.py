@@ -1,10 +1,11 @@
+import datetime
 from flask import Flask, render_template, request, jsonify, session
 
 
 classes_content = {
     'basics': {
         'title': 'Basics',
-        'text_content': 'What’s a Stock? A stock is like a 🍰 of a company\'s 🎂, representing a share of ownership and a taste of its 💰or losses.',
+        'text_content': 'What’s a Stock? A stock is like a 🍰 of a company\'s 🎂, representing a share of ownership and a taste of its 💰 or losses.',
         'video_content': 'https://www.example.com/html_intro_video'
     },
     'risk_vs_reward': {
@@ -27,17 +28,24 @@ quizzes_content = {
         'video_content': 'https://www.example.com/html_intro_video'
     },
     'risk_vs_reward': {
-        'title': 'Risk vs. Reward',
-        'pop_quiz': {
-            'question': "Company A and Company B have these characteristics:",
-            'options': {
-                'A': "",
-                'B': ""
-            },
-            'correct_answer': 'A',
-            'question_id': 'risk_vs_reward_01' 
+    'title': 'Risk vs. Reward',
+    'pop_quiz': {
+        'question': (
+            "<p>Company A and Company B have these characteristics:</p>"
+            "<ul>"
+            "<p>Option A: Doubles your $100 investment in a year, An AI startup company</p>"
+            "<p>Option B: Doubles your $100 investment in 3 years, Similar to Apple Inc.</p>"
+            "</ul>"
+            "<p>Which one seems riskier?</p>"
+        ),
+        'options': {
+            'A': "",
+            'B': ""
         },
+        'correct_answer': 'A',
+        'question_id': 'risk_vs_reward_01'
     },
+},
 
     'compounding': {
         'title': 'Power of Compounding',
@@ -55,40 +63,35 @@ class_quizzes_content = {
     'basics': {
         'title': 'Basics',
         'text_content': 'HTML is the standard markup language for creating Web pages.',
-        'video_content': 'https://www.example.com/html_intro_video',
-        'score': '0'
+        'video_content': 'https://www.example.com/html_intro_video'
     },
     'risk_vs_reward': {
         'title': 'Risk vs. Reward',
         'class_quiz': {
-            'question': "Class Quiz Test 1 ",
+            'question': "You’re having a ball at the casino, and you’re thinking whether to put it all on red, all on even or all on your lucky number (7... obviously).<p> Where would you expect to make a higher return?</p>",
             'options': {
-                'A': "",
-                'B': ""
+                'A': "All on red",
+                'B': "All on Black",
+                'C': "All on 7"
             },
-            'correct_answer': 'A',
-            'question_id': 'risk_vs_reward_01' 
+            'correct_answer': 'C',
+            'question_id': 'risk_vs_reward_02' 
         },
-        'score': '0'
     },
 
     'compounding': {
         'title': 'Power of Compounding',
         'text_content': 'CSS is a language that describes the style of an HTML document.',
-        'video_content': 'https://www.example.com/css_intro_video',
-        'score': '0'
+        'video_content': 'https://www.example.com/css_intro_video'
     },
     'final': {
         'title': 'Final Quiz',
         'text_content': 'CSS is a language that describes the style of an HTML document.',
-        'video_content': 'https://www.example.com/css_intro_video',
-        'score': '0'
-
+        'video_content': 'https://www.example.com/css_intro_video'
     },
     
 
 }
-
 
 app = Flask(__name__)
 
@@ -132,9 +135,10 @@ def quiz_info(quiz_name):
 def pop_quiz(class_name):
     class_content = quizzes_content.get(class_name)  
     if class_content and 'pop_quiz' in class_content: 
-        return render_template('pop_quiz.html', content=class_content)
+        return render_template('pop_quiz.html', content=class_content['pop_quiz'])
     else:
         return "Pop Quiz not found", 404
+
     
     
 @app.route('/lesson/<int:lesson_number>')
@@ -144,30 +148,23 @@ def lesson(lesson_number):
 @app.route('/class/<class_name>/class_quiz')
 def class_quiz(class_name):
     class_content = class_quizzes_content.get(class_name)  
-    
-    return render_template('class_quiz.html', content=class_content)
-
-@app.route('/update_quiz_score', methods=['POST'])
-def update_quiz_score():
-    data = request.get_json()
-    quiz_name = data['quiz_name']
-
-    print("BEFORE:   \n", class_quizzes_content[quiz_name])
-
-    # Check if the quiz exists in the class_quizzes_content dictionary
-    if quiz_name in class_quizzes_content:
-        class_quizzes_content[quiz_name]['score'] = "1"
-
-        print("AFTER:   \n", class_quizzes_content[quiz_name])
-        return jsonify(success=True, message="Score updated successfully")
+    if class_content and 'class_quiz' in class_content: 
+        return render_template('class_quiz.html', content=class_content['class_quiz'])
     else:
-        return jsonify(success=False, message="Quiz not found"), 404
+        return "Class Quiz not found", 404
 
+@app.route('/class/<class_name>/submit_class_quiz', methods=['POST'])
+def submit_class_quiz(class_name):
+    selected_option = request.form.get('answer')
+    correct_answer = class_quizzes_content[class_name]['class_quiz']['correct_answer']
     
-
-
-
-
+    if selected_option == correct_answer:
+        # Logic for correct answer
+        return "Correct! Well done."
+    else:
+        # Logic for incorrect answer
+        return "That's not right. Try again!"
+    
 
 
 

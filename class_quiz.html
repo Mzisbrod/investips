@@ -1,0 +1,23 @@
+{% extends "layout_sidebar.html" %}
+{% block content %}
+<div class="center">
+    <h1>{{ content.title }}</h1>
+    <div class="mt-4 mb-5">
+        <h2>Class Quiz</h2>
+        <p>{{ content.question |safe}}</p>
+        <form action="{{ url_for('submit_class_quiz', class_name='risk_vs_reward') }}" method="post">
+            <div class="form-group">
+                {% for option_key, option_value in content.options.items() %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="answer" id="option_{{ option_key }}" value="{{ option_key }}">
+                    <label class="form-check-label" for="option_{{ option_key }}">
+                        {{ option_value }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

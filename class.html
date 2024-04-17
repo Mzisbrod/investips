@@ -1,0 +1,13 @@
+{% extends "layout_sidebar.html" %}
+{% block content %}
+<div class="center">
+    <h1>{{ content.title }}</h1>
+    <p>{{ content.text_content }}</p>
+    <div class="text-right">
+        <a href="{{ url_for('pop_quiz', class_name='risk_vs_reward') }}" class="btn btn-outline-secondary">
+            Next <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+<br>
+{% endblock %}
