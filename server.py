@@ -55,7 +55,8 @@ class_quizzes_content = {
     'basics': {
         'title': 'Basics',
         'text_content': 'HTML is the standard markup language for creating Web pages.',
-        'video_content': 'https://www.example.com/html_intro_video'
+        'video_content': 'https://www.example.com/html_intro_video',
+        'score': '0'
     },
     'risk_vs_reward': {
         'title': 'Risk vs. Reward',
@@ -68,21 +69,26 @@ class_quizzes_content = {
             'correct_answer': 'A',
             'question_id': 'risk_vs_reward_01' 
         },
+        'score': '0'
     },
 
     'compounding': {
         'title': 'Power of Compounding',
         'text_content': 'CSS is a language that describes the style of an HTML document.',
-        'video_content': 'https://www.example.com/css_intro_video'
+        'video_content': 'https://www.example.com/css_intro_video',
+        'score': '0'
     },
     'final': {
         'title': 'Final Quiz',
         'text_content': 'CSS is a language that describes the style of an HTML document.',
-        'video_content': 'https://www.example.com/css_intro_video'
+        'video_content': 'https://www.example.com/css_intro_video',
+        'score': '0'
+
     },
     
 
 }
+
 
 app = Flask(__name__)
 
@@ -139,7 +145,23 @@ def lesson(lesson_number):
 def class_quiz(class_name):
     class_content = class_quizzes_content.get(class_name)  
     
-    return render_template('quiz.html', content=class_content)
+    return render_template('class_quiz.html', content=class_content)
+
+@app.route('/update_quiz_score', methods=['POST'])
+def update_quiz_score():
+    data = request.get_json()
+    quiz_name = data['quiz_name']
+
+    print("BEFORE:   \n", class_quizzes_content[quiz_name])
+
+    # Check if the quiz exists in the class_quizzes_content dictionary
+    if quiz_name in class_quizzes_content:
+        class_quizzes_content[quiz_name]['score'] = "1"
+
+        print("AFTER:   \n", class_quizzes_content[quiz_name])
+        return jsonify(success=True, message="Score updated successfully")
+    else:
+        return jsonify(success=False, message="Quiz not found"), 404
 
     
 

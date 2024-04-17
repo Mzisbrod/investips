@@ -1,8 +1,3 @@
-{% extends "layout_sidebar.html" %}
-{% block content %}
-
-<script>
-
 
 console.log("HELLO! class_quiz.js");
 
@@ -26,20 +21,3 @@ function updateQuizScore(quizName) {
         }
     });
 }
-
-
-
-</script>
-
-<h1>{{ content.title }}</h1>
-<div class="mt-4 mb-5">
-    <h2>Class Quiz</h2>
-</div>
-
-
-<button onclick="updateQuizScore('risk_vs_reward')">Submit Quiz</button>
-
-
-
-
-{% endblock %}
