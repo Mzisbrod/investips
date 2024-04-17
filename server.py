@@ -23,7 +23,11 @@ classes_content = {
     'compounding': {
         'title': 'Power of Compounding',
         'text_content': 'CSS is a language that describes the style of an HTML document.',
-        'video_content': 'https://www.example.com/css_intro_video'
+        'lessons':{
+            'lesson_1':'https://www.investopedia.com/thmb/zqeTVMxKi3XVkXJxnQTEJttt1Ew=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Term-Definitions_Finance-d53e01ed39994c7e959f028374c20ff1.jpg',
+            'lesson_2':'https://www.topuniversities.com/sites/default/files/styles/articles_inline/public/articles/lead-images/finance_2.jpg.webp'
+        }
+        
     },
     # Add more classes as needed
 }
@@ -31,8 +35,15 @@ classes_content = {
 quizzes_content = {
     'basics': {
         'title': 'Basics',
-        'text_content': 'HTML is the standard markup language for creating Web pages.',
-        'video_content': 'https://www.example.com/html_intro_video'
+        'pop_quiz': {
+            'question': "Company A and Company B have these characteristics:",
+            'options': {
+                'A': "",
+                'B': ""
+            },
+            'correct_answer': 'A',
+            'question_id': 'risk_vs_reward_01' 
+        },
     },
     'risk_vs_reward': {
         'title': 'Risk vs. Reward',
@@ -121,7 +132,7 @@ def record_quiz_answer():
 def class_info(class_name):
     content = classes_content.get(class_name, None)
     if content:
-        return render_template('class.html', content=content)
+        return render_template('class.html', content=content, class_name=class_name)
     else:
         return "Class not found", 404
 
@@ -138,16 +149,24 @@ def quiz_info(quiz_name):
     
 @app.route('/class/<class_name>/pop_quiz')
 def pop_quiz(class_name):
-    class_content = quizzes_content.get(class_name)  
-    if class_content and 'pop_quiz' in class_content: 
-        return render_template('pop_quiz.html', content=class_content)
+    class_content = quizzes_content.get(class_name)
+    if class_content and 'pop_quiz' in class_content:
+        return render_template('pop_quiz.html', content=class_content, class_name=class_name)
     else:
         return "Pop Quiz not found", 404
     
     
-@app.route('/lesson/<int:lesson_number>')
-def lesson(lesson_number):
-    return render_template('lesson.html', lesson_number=lesson_number)
+@app.route('/class/<class_name>/lesson/<lesson_number>')
+def lesson(class_name, lesson_number):
+    class_content = classes_content.get(class_name)
+    if not class_content:
+        return "Class not found", 404
+    lesson_key = f'lesson_{lesson_number}'
+    lesson_url = class_content.get('lessons', {}).get(lesson_key)
+    if not lesson_url:
+        return "Lesson not found", 404
+    return render_template('lesson.html', lesson_url=lesson_url, lesson_number=lesson_number, class_name=class_name)
+
 
 @app.route('/class/<class_name>/class_quiz')
 def class_quiz(class_name):

@@ -43,10 +43,10 @@
             <!-- Sidebar -->
             <div class="col-md-2 sidebar">
                 <a class="active">Class</a>
-                <a href="{{ url_for('pop_quiz', class_name='risk_vs_reward') }}">Pop Quiz</a> <!-- THIS IS WHY IT REDIRECTS TO RISK V. REWARD-->
-                <a href="#news">Lesson 1</a>
-                <a href="#contact">Lesson 2</a>
-                <a href="{{ url_for('class_quiz', class_name='risk_vs_reward') }}">Quiz</a>
+                <a href="{{ url_for('pop_quiz', class_name = class_name) }}">Pop Quiz</a> <!-- THIS IS WHY IT REDIRECTS TO RISK V. REWARD-->
+                <a href="{{ url_for('lesson', class_name=class_name, lesson_number=1) }}">Lesson 1</a>
+                <a href="{{ url_for('lesson', class_name=class_name, lesson_number=2) }}">Lesson 2</a>
+                <a href="{{ url_for('class_quiz', class_name=class_name) }}">Quiz</a>
             </div>
 
             <!-- Content -->

@@ -56,3 +56,8 @@
 .center {
   text-align: center;
 }
+
+.lesson_photo{
+  width: 50%;
+  height: auto;
+}
