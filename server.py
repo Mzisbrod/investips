@@ -5,12 +5,20 @@ classes_content = {
     'basics': {
         'title': 'Basics',
         'text_content': 'What’s a Stock? A stock is like a 🍰 of a company\'s 🎂, representing a share of ownership and a taste of its 💰or losses.',
-        'video_content': 'https://www.example.com/html_intro_video'
+        'lessons':{
+            'lesson_1':'https://media.wbur.org/wp/2016/09/money.jpg',
+            'lesson_2':'https://upload.wikimedia.org/wikipedia/commons/2/20/Euro_coins_and_banknotes_%28cropped%29.jpg'
+        }
+        
     },
     'risk_vs_reward': {
         'title': 'Risk vs. Reward',
-        'text_content': 'HTML is the standard markup language for creating Web pages.',
-        'video_content': 'https://www.example.com/html_intro_video'
+        'text_content': 'The point is, ladies and gentlemen, that greed, for lack of a better word, is good. Greed is right. Greed works. Greed clarifies, cuts through, and captures the essence of the evolutionary spirit. Greed, in all of its forms; greed for life, for money, for love, knowledge, has marked the upward surge of mankind. And greed, you mark my words, will not only save Teldar Paper, but that other malfunctioning corporation called the USA.',
+        'lessons':{
+            'lesson_1':'https://www.investopedia.com/thmb/zqeTVMxKi3XVkXJxnQTEJttt1Ew=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Term-Definitions_Finance-d53e01ed39994c7e959f028374c20ff1.jpg',
+            'lesson_2':'https://www.topuniversities.com/sites/default/files/styles/articles_inline/public/articles/lead-images/finance_2.jpg.webp'
+        }
+        
     },
     'compounding': {
         'title': 'Power of Compounding',
@@ -172,6 +180,9 @@ def results():
         'total_score': total_score
     }
     return render_template('results.html', content=content)
+
+
+
 
     
 
