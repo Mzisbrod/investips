@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, session
+from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 
 
 classes_content = {
@@ -162,6 +162,16 @@ def update_quiz_score():
         return jsonify(success=True, message="Score updated successfully")
     else:
         return jsonify(success=False, message="Quiz not found"), 404
+    
+@app.route('/results')
+def results():
+    total_score = sum(int(quiz['score']) for quiz in class_quizzes_content.values() if 'score' in quiz)
+    # Assuming you also want to display a title or other content
+    content = {
+        'title': 'Quiz Results',
+        'total_score': total_score
+    }
+    return render_template('results.html', content=content)
 
     
 
