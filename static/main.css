@@ -1,9 +1,11 @@
 /* The side navigation menu */
 .sidebar {
-  margin: 0;
+  margin-top: 50px;
   padding: 0;
   width: 200px;
-  background-color: #f8f9fa;
+  background-color: white;
+  text-align: center;
+  font-size: 22px;
   flex: 0 0 200px; /* Sidebar width and not allowed to grow or shrink */
   overflow: auto;
   font-family: Arial;
@@ -20,7 +22,6 @@
 
 /* Active/current link */
 .sidebar a.active {
-  text-decoration: underline;
   font-weight: bold;
   color: #121213;
 }

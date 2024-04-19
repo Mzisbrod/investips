@@ -4,15 +4,24 @@
     <h1>{{ content.title }}</h1>
     <p>{{ content.text_content }}</p>
     <div class="text-right">
-        <a href="/class/next_class_name" class="btn btn-outline-secondary">
+        {% if class_name == "stocks" %}
+        {% else %}
+            <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn btn-outline-secondary">
+                Previous <i class="fas fa-arrow-right"></i>
+            </a>
+        {% endif %}
+        {% if content.module == 'basics' %}
+            <a href="{{ url_for('class_info', class_name=content.next) }}" class="btn btn-outline-secondary">
+                Next <i class="fas fa-arrow-right"></i>
+            </a>
+        {% else %}
+            <a href="{{ url_for('quiz_info', quiz_name=content.next) }}" class="btn btn-outline-secondary">
             Next <i class="fas fa-arrow-right"></i>
         </a>
+        {% endif %}
     </div>
 </div>
 <br>
 {% endblock %}
 
-
-
-Test test test. 
 

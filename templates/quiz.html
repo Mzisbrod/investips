@@ -2,37 +2,23 @@
 {% block content %}
 <div class="center">
     <h1>{{ content.title }}</h1>
-    {% if quiz_name == 'risk_vs_reward' %}
-    <div class="mt-4 mb-5">
-        <h2>{{ content.pop_quiz.question }}</h2>
-        <div class="row">
-            {% for option_key, option_value in content.pop_quiz.options.items() %}
-            <div class="col-md-6">
-                <div class="p-3 border">
-                    <p>{{ option_value }}</p>
-                    <button class="btn btn-primary" onclick="recordChoice('{{ option_key }}')">Option {{ option_key }}</button>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+    <p>{{ content.text_content }}</p>
+    <div class="text-right">
+    {% if content.title == "Final Quiz" %}
+        <a href="{{ url_for('class_info', class_name="Compounding") }}" class="btn btn-outline-secondary">
+            Previous <i class="fas fa-arrow-right"></i>
+        </a>
     {% endif %}
+        {% if content.next == "final_quiz" %}
+            <a href="{{ url_for('quiz_info', quiz_name=content.next) }}" class="btn btn-outline-secondary">
+            Next <i class="fas fa-arrow-right"></i>
+        </a>
+        {% else %}
+        <a href="{{ url_for('class_info', class_name=content.next) }}" class="btn btn-outline-secondary">
+            Next <i class="fas fa-arrow-right"></i>
+        </a>
+        {% endif %}
+    </div>
 </div>
-<script>
-function recordChoice(choice) {
-    // Send the answer to the server
-    $.ajax({
-        type: "POST",
-        url: "/record_quiz_answer",
-        data: {
-            quiz_name: "{{ quiz_name }}",
-            answer: choice
-        },
-        success: function(response) {
-            // You can handle the response here, such as showing a message or redirecting to another page
-        }
-    });
-}
-</script>
 <br>
 {% endblock %}

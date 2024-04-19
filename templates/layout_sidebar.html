@@ -26,10 +26,10 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="navbar-nav mr-auto">
-            <a class="nav-link" href="{{ url_for('class_info', class_name='basics') }}">Basics</a>
-            <a class="nav-link" href="{{ url_for('class_info', class_name='risk_vs_reward') }}">Risk vs. Reward</a>
-            <a class="nav-link" href="{{ url_for('class_info', class_name='compounding') }}">Power of Compounding</a>
-            <a class="nav-link" href="{{ url_for('quiz_info', quiz_name='final') }}">Final Quiz</a>
+            <a class="nav-link" href="{{ url_for('class_info', class_name='stocks') }}">Basics</a>
+            <a class="nav-link" href="{{ url_for('class_info', class_name='Risk vs. Reward') }}">Risk vs. Reward</a>
+            <a class="nav-link" href="{{ url_for('class_info', class_name='Compounding') }}">Power of Compounding</a>
+            <a class="nav-link" href="{{ url_for('quiz_info', quiz_name='final_quiz') }}">Final Quiz</a>
         </div>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -42,11 +42,14 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-2 sidebar">
-                <a class="active">Class</a>
-                <a href="{{ url_for('pop_quiz', class_name = class_name) }}">Pop Quiz</a> <!-- THIS IS WHY IT REDIRECTS TO RISK V. REWARD-->
-                <a href="{{ url_for('lesson', class_name=class_name, lesson_number=1) }}">Lesson 1</a>
-                <a href="{{ url_for('lesson', class_name=class_name, lesson_number=2) }}">Lesson 2</a>
-                <a href="{{ url_for('class_quiz', class_name=class_name) }}">Quiz</a>
+                {% if content.module == "basics" %}
+                    <a class="active">{{ content.module | capitalize }}</a>
+                    <a href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
+                    <a href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
+                {% else %}
+                    <a class="active">{{ class_name | capitalize }}</a>
+                    <a href="{{ url_for('quiz_info', quiz_name=content.next) }}">Quiz</a>
+                {% endif %}
             </div>
 
             <!-- Content -->

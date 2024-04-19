@@ -3,7 +3,7 @@
 <div class="center">
     <h1>Welcome to Investips!</h1>
     <p>Investing is important. Let’s learn how to do it.</p>
-    <button class="btn btn-primary" onclick="window.location.href='/class/basics'">Start your investing journey now!</button>
+    <a class="btn btn-primary" href="{{ url_for('class_info', class_name='stocks') }}">Start your investing journey now!</a>
 </div>
 <br>
 {% endblock %}
