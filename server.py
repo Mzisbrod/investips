@@ -27,7 +27,7 @@ classes_content = {
         'media_content': "video",
         'prev': "bonds",
         'prev_module': "classes_content",
-        'next': "risk_vs_reward_quiz",
+        'next': "Risk vs. Reward Quiz",
         'next_module': "quiz_content",
     },
     'Compounding': {
@@ -37,7 +37,7 @@ classes_content = {
         'media_content': "video",
         'prev': "Risk vs. Reward",
         'prev_module': "classes_content",
-        'next': "compounding_quiz",
+        'next': "Compounding Quiz",
         'next_module': "quiz_content",
     },
     # Add more classes as needed
@@ -53,7 +53,7 @@ quiz_content = {
         'next': "Risk vs. Reward",
         'next_module': "classes_content",
     },
-    'risk_vs_reward_quiz': {
+    'Risk vs. Reward Quiz': {
         'module': "quiz_content",
         'title': 'Risk vs. Reward Quiz',
         'text_content': 'Company A and Company B have these characteristics',
@@ -64,7 +64,7 @@ quiz_content = {
         'next': "Compounding",
         'next_module': "classes_content",
     },
-    'compounding_quiz': {
+    'Compounding Quiz': {
         'module': "quiz_content",
         'title': 'Compounding Quiz',
         'text_content': 'Company A and Company B have these characteristics',
@@ -72,10 +72,10 @@ quiz_content = {
         'solution': 'Apple',
         'prev': "Compounding",
         'prev_module': "classes_content",
-        'next': "final_quiz",
+        'next': "Final Quiz",
         'next_module': "quiz_content",
     },
-    'final_quiz': {
+    'Final Quiz': {
         'module': "quiz_content",
         'title': 'Final Quiz',
         'text_content': 'Company A and Company B have these characteristics',
@@ -84,6 +84,18 @@ quiz_content = {
         'next': "results",
         'next_module': "results.html",
     },
+}
+score = {
+    'Risk vs. Reward Quiz': 0,
+    'Compounding Quiz': 0,
+    'Final Quiz': 0,
+
+}
+
+score_to_class = {
+    'Risk vs. Reward Quiz': 'Risk vs. Reward',
+    'Compounding Quiz': 'Compounding',
+    'Final Quiz': 'stocks',
 }
 
 
@@ -102,71 +114,36 @@ def class_info(class_name):
     else:
         return "Class not found", 404
 
-@app.route('/quiz/<quiz_name>')
+from flask import request, session
+
+@app.route('/quiz/<quiz_name>', methods=['GET', 'POST'])
 def quiz_info(quiz_name):
     content = quiz_content.get(quiz_name, None)
-    if content:
-        # if quiz_name == 'risk_vs_reward':
-        #     session['start_time'] = datetime.utcnow().isoformat()
-        #     session['answers'] = {}
-        return render_template('quiz.html', content=content, quiz_name=quiz_name)
-    else:
+    if not content:
         return "Quiz not found", 404
+    # Normal GET request handling
+    return render_template('quiz.html', content=content, quiz_name=quiz_name)
 
-@app.route('/record_quiz_answer', methods=['POST'])
-def record_quiz_answer():
-    quiz_name = request.form['quiz_name']
-    answer = request.form['answer']
-    correct_answer = quiz_content[quiz_name]['pop_quiz']['correct_answer']
+@app.route('/submit_quiz/<quiz_name>', methods=['POST'])
+def submit_quiz(quiz_name):
+    submitted_answer = request.form.get('selected_answer')
 
-    # Record the answer and check if it's correct
-    session['answers'][quiz_name] = answer
-    is_correct = answer == correct_answer
+    correct_answer = quiz_content[quiz_name]['solution']
 
-    return jsonify(success=True, correct=is_correct)
+    # Check if the answer is correct
+    if submitted_answer == correct_answer:
+        # Update the score for the quiz_name if the answer is correct
+        score[quiz_name] = 1
+    print(f"submit quiz route report:\n submitted answer = {submitted_answer}\n"
+          f"correct answer = {correct_answer}\n score dict: {score}")
+    # No need to return anything as per the requirements
+    return '', 204  # HTTP 204 No Content response
 
-    
 
-@app.route('/class/<class_name>/class_quiz')
-def class_quiz(class_name):
-    class_content = class_quizzes_content.get(class_name)  
-    
-    return render_template('class_quiz.html', content=class_content)
-
-@app.route('/update_quiz_score', methods=['POST'])
-def update_quiz_score():
-    data = request.get_json()
-    quiz_name = data['quiz_name']
-
-    print("BEFORE:   \n", class_quizzes_content[quiz_name])
-
-    # Check if the quiz exists in the class_quizzes_content dictionary
-    if quiz_name in class_quizzes_content:
-        class_quizzes_content[quiz_name]['score'] = "1"
-
-        print("AFTER:   \n", class_quizzes_content[quiz_name])
-        return jsonify(success=True, message="Score updated successfully")
-    else:
-        return jsonify(success=False, message="Quiz not found"), 404
-    
 @app.route('/results')
 def results():
-    total_score = sum(int(quiz['score']) for quiz in class_quizzes_content.values() if 'score' in quiz)
-    # Assuming you also want to display a title or other content
-    content = {
-        'title': 'Quiz Results',
-        'total_score': total_score
-    }
-    return render_template('results.html', content=content)
-
-
-
-
-    
-
-
-
-
+    user_score = sum(score.values())/len(score.keys())*100
+    return render_template('results.html', results=score, score=user_score, score_class=score_to_class)
 
 
 

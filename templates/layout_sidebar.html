@@ -10,6 +10,7 @@
       <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
       <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+      <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
@@ -29,7 +30,7 @@
             <a class="nav-link" href="{{ url_for('class_info', class_name='stocks') }}">Basics</a>
             <a class="nav-link" href="{{ url_for('class_info', class_name='Risk vs. Reward') }}">Risk vs. Reward</a>
             <a class="nav-link" href="{{ url_for('class_info', class_name='Compounding') }}">Power of Compounding</a>
-            <a class="nav-link" href="{{ url_for('quiz_info', quiz_name='final_quiz') }}">Final Quiz</a>
+            <a class="nav-link" href="{{ url_for('quiz_info', quiz_name='Final Quiz') }}">Final Quiz</a>
         </div>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -42,6 +43,7 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-2 sidebar">
+            {% if content %}
                 {% if content.module == "basics" %}
                     <a class="active">{{ content.module | capitalize }}</a>
                     <a href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
@@ -50,6 +52,7 @@
                     <a class="active">{{ class_name | capitalize }}</a>
                     <a href="{{ url_for('quiz_info', quiz_name=content.next) }}">Quiz</a>
                 {% endif %}
+            {% endif %}
             </div>
 
             <!-- Content -->

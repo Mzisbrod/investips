@@ -3,21 +3,40 @@
 <div class="center">
     <h1>{{ content.title }}</h1>
     <p>{{ content.text_content }}</p>
+    <form id="quizForm" action="{{ url_for('submit_quiz', quiz_name=content.title ) }}" method="post">
+        {% for answer in content.answer_content %}
+        <div>
+            <input type="radio" id="answer_{{ loop.index }}" name="selected_answer" value="{{ answer }}">
+            <label for="answer_{{ loop.index }}">{{ answer }}</label>
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit Answer</button>
+    </form>
+    <!-- final quiz only has see results -->
     <div class="text-right">
     {% if content.title == "Final Quiz" %}
-        <a href="{{ url_for('class_info', class_name="Compounding") }}" class="btn btn-outline-secondary">
-            Previous <i class="fas fa-arrow-right"></i>
         </a>
-    {% endif %}
-        {% if content.next == "final_quiz" %}
-            <a href="{{ url_for('quiz_info', quiz_name=content.next) }}" class="btn btn-outline-secondary">
-            Next <i class="fas fa-arrow-right"></i>
+         <a href="{{ url_for('results') }}" class="btn btn-outline-secondary">
+            See results > <i class="fas fa-arrow-right"></i>
+        </a>
+    {% elif content.next == "Final Quiz" %}
+        <!-- Next quiz is the final quiz -->
+        <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn btn-outline-secondary">
+           < {{ content.prev | capitalize }}  <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="{{ url_for('quiz_info', quiz_name=content.next) }}" class="btn btn-outline-secondary">
+            {{ content.next | capitalize }} <i class="fas fa-arrow-right"></i>
         </a>
         {% else %}
+        <!-- Regular quiz prev and next-->
+        <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn btn-outline-secondary">
+            < {{ content.prev | capitalize }} <i class="fas fa-arrow-right"></i>
+        </a>
         <a href="{{ url_for('class_info', class_name=content.next) }}" class="btn btn-outline-secondary">
-            Next <i class="fas fa-arrow-right"></i>
+            {{ content.next | capitalize }} ><i class="fas fa-arrow-right"></i>
         </a>
         {% endif %}
+
     </div>
 </div>
 <br>

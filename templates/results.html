@@ -1,42 +1,17 @@
 {% extends "layout_sidebar.html" %}
 {% block content %}
 
-<script>
-    $(document).ready(function() {
-        var score = {{ content.total_score }};
-        var message = '';
-        if (score == 0) {
-            message = 'Better luck next time!';
-        } else if (score == 1) {
-            message = 'Good job!';
-        }
-        $('#results_reaction_tbx').text(message);
-    });
-
-
-
-</script>
-
-
-<h1>{{ content.title }}</h1>
-<div class="mt-4 mb-5">
-    <h2>Score</h2>
-</div>
-
-
-<div>You scored: {{ content.total_score }} / 1</div>
-
-<div id = "results_reaction_tbx">
-
-
-</div>
-
-
-
-
-
-
-
-
+    <h1>Hello</h1>
+    <p>{{ results }}</p>
+    <p>your score is %{{ score | round }}</p>
+    {% for quiz in results %}
+        {% if results[quiz] == 0 %}
+            <hr>
+            <a href="{{ url_for('class_info', class_name=score_class[quiz])}}">
+                Try learning about {{ score_class[quiz] }} again
+            </a>
+        {% endif %}
+    {% endfor %}
+    <hr>
 
 {% endblock %}
