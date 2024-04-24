@@ -19,7 +19,7 @@
       <title>InvesTIPS</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar bg navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">invesTIPS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,10 +32,6 @@
             <a class="nav-link" href="{{ url_for('class_info', class_name='Compounding') }}">Power of Compounding</a>
             <a class="nav-link" href="{{ url_for('quiz_info', quiz_name='Final Quiz') }}">Final Quiz</a>
         </div>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
         </div>
     </nav>
 
@@ -44,7 +40,8 @@
             <!-- Sidebar -->
             <div class="col-md-2 sidebar">
             {% if content %}
-                {% if content.module == "basics" %}
+                {% if content.title == 'Final Quiz' %}
+                {% elif content.module == "basics" %}
                     <a class="active">{{ content.module | capitalize }}</a>
                     <a href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
                     <a href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
@@ -60,6 +57,13 @@
                 <div class="content center">
                     {% block content %}
                     {% endblock %}
+                <br><br><br><hr>
+                <div class="grid">
+                    <a class="nav-link" href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
+                    <a class="nav-link" href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
+                    <a class="nav-link" href="{{ url_for('class_info', class_name='Risk vs. Reward') }}">Risk vs. Reward</a>
+                    <a class="nav-link" href="{{ url_for('class_info', class_name='Compounding') }}">Power of Compounding</a>
+                </div>
                 </div>
             </div>
         </div>
