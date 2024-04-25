@@ -19,15 +19,27 @@
     </form>
     <!-- Navigation and results links, similar to before -->
     <div class="text-right">
-        {% if content.next == "Final Quiz" %}
-            <a href="{{ url_for('results') }}" class="btn btn-outline-secondary">See results > <i class="fas fa-arrow-right"></i></a>
+        {% if content.title == "Final Quiz" %}
+        </a>
+         <a href="{{ url_for('results') }}" class="btn button-green-2">
+            See results > <i class="fas fa-arrow-right"></i>
+        </a>
+    {% elif content.next == "Final Quiz" %}
+        <!-- Next quiz is the final quiz -->
+        <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn button-green-2">
+           < {{ content.prev | capitalize }}  <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="{{ url_for('quiz_info', quiz_name=content.next) }}" class="btn button-green-2">
+            {{ content.next | capitalize }} <i class="fas fa-arrow-right"></i>
+        </a>
         {% else %}
-            <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn btn-outline-secondary">
-                < {{ content.prev | capitalize }} <i class="fas fa-arrow-right"></i>
-            </a>
-            <a href="{{ url_for('class_info', class_name=content.next) }}" class="btn btn-outline-secondary">
-                {{ content.next | capitalize }} ><i class="fas fa-arrow-right"></i>
-            </a>
+        <!-- Regular quiz prev and next-->
+        <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn button-green-2">
+            < {{ content.prev | capitalize }} <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="{{ url_for('class_info', class_name=content.next) }}" class="btn button-green-2">
+            {{ content.next | capitalize }} ><i class="fas fa-arrow-right"></i>
+        </a>
         {% endif %}
     </div>
 </div>
