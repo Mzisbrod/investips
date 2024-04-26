@@ -98,7 +98,8 @@ quiz_content = {
             },
             {
                 'question_text': "If you lend money to the government by buying bonds, what do you usually get in return?",
-                'options': ['A) Shares in the government', 'B) Regular interest payments', 'C) Free government services', 'D) Company stock'],
+                'options': ['A) Shares in the government', 'B) Regular interest payments',
+                            'C) Free government services', 'D) Company stock'],
                 'solution': 'B) Regular interest payments'
             },
             {
@@ -121,12 +122,14 @@ quiz_content = {
             },
             {
                 'question_text': "If a friend offers you a part in their startup, which is true?",
-                'options': ['A) It’s totally safe', 'B) It could make you rich', 'C) You’ll definitely lose money', 'D) B & C'],
+                'options': ['A) It’s totally safe', 'B) It could make you rich', 'C) You’ll definitely lose money',
+                            'D) B & C'],
                 'solution': 'D) B & C'
             },
             {
                 'question_text': "What should you consider when choosing an investment?",
-                'options': ['A) Color of the logo', 'B) Risk and your comfort with it', 'C) If your friends like it', 'D) The weather'],
+                'options': ['A) Color of the logo', 'B) Risk and your comfort with it', 'C) If your friends like it',
+                            'D) The weather'],
                 'solution': 'B) Risk and your comfort with it'
             }
         ],
@@ -141,17 +144,20 @@ quiz_content = {
         'questions': [
             {
                 'question_text': "What happens to your money in a compounding interest scenario?",
-                'options': ['A) It decreases over time', 'B) It stays the same', 'C) It grows by earning interest on interest', 'D) It gets taxed more'],
+                'options': ['A) It decreases over time', 'B) It stays the same',
+                            'C) It grows by earning interest on interest', 'D) It gets taxed more'],
                 'solution': 'C) It grows by earning interest on interest'
             },
             {
                 'question_text': "What's the best strategy for taking advantage of compounding?",
-                'options': ['A) Invest once and never again', 'B) Withdraw profits every year', 'C) Reinvest earnings', 'D) Ignore market trends'],
+                'options': ['A) Invest once and never again', 'B) Withdraw profits every year', 'C) Reinvest earnings',
+                            'D) Ignore market trends'],
                 'solution': 'C) Reinvest earnings'
             },
             {
                 'question_text': "When is the best time to start investing for compound interest to really show its magic?",
-                'options': ['A) At age 50', 'B) As soon as possible', 'C) After retirement', 'D) When the stock market is down'],
+                'options': ['A) At age 50', 'B) As soon as possible', 'C) After retirement',
+                            'D) When the stock market is down'],
                 'solution': 'B) As soon as possible'
             }
         ],
@@ -176,7 +182,8 @@ quiz_content = {
             },
             {
                 'question_text': "How can diversification help your investment portfolio?",
-                'options': ['A) Increases risk', 'B) Decreases risk', 'C) No impact', 'D) Only beneficial in short term'],
+                'options': ['A) Increases risk', 'B) Decreases risk', 'C) No impact',
+                            'D) Only beneficial in short term'],
                 'solution': 'B) Decreases risk'
             }
         ],
@@ -208,11 +215,14 @@ def main():
 
 @app.route('/class/<class_name>')
 def class_info(class_name):
-    content = classes_content.get(class_name, None)
-    if content:
-        return render_template('class.html', content=content, class_name=class_name)
-    else:
+    class_data = classes_content.get(class_name)
+    if not class_data:
         return "Class not found", 404
+
+    # Determine the related quiz name for the sidebar link, based on the 'next' key in class_data
+    quiz_name = class_data.get('next')
+
+    return render_template('class.html', content=class_data, class_name=class_name, quiz_name=quiz_name)
 
 
 from flask import request, session
@@ -224,7 +234,7 @@ def quiz_info(quiz_name):
     if not content:
         return "Quiz not found", 404
     # Normal GET request handling
-    return render_template('quiz.html', content=content, quiz_name=quiz_name)
+    return render_template('quiz.html', content=content, class_name=quiz_name, quiz_name=quiz_name)
 
 
 @app.route('/submit_quiz/<quiz_name>', methods=['POST'])
@@ -272,4 +282,3 @@ def submit_pop_quiz(quiz_name):
 
 if __name__ == '__main__':
     app.run(debug=True)
-

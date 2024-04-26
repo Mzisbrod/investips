@@ -2,38 +2,36 @@
 {% block content %}
 <div class="center">
     <h1>{{ content.title }}</h1>
-    <form id="quizForm" action="{{ url_for('submit_quiz', quiz_name=content.title) }}" method="post">
+    <div id="quizForm">
         {% for question in content.questions %}
         <div class="question">
             <p>{{ question.question_text }}</p>
-            {% for option in question.options %}
-            <div>
-                <!-- Update IDs and names to use only the outer loop's index for uniqueness -->
-                <input type="radio" id="answer_{{ loop.index0 }}" name="selected_answer{{ loop.index0 }}" value="{{ option }}">
-                <label for="answer_{{ loop.index0 }}">{{ option }}</label>
+            <div class="options">
+                {% for option in question.options %}
+                <button class="option"
+                        onclick="checkAnswer('{{ option }}', '{{ question.solution }}', this)">
+                    {{ option }}
+                </button>
+                {% endfor %}
             </div>
-            {% endfor %}
+            <div class="feedback" id="feedback_{{ loop.index0 }}"></div>
         </div>
         {% endfor %}
-        <button type="submit" class="btn btn-primary">Submit All Answers</button>
-    </form>
+    </div>
     <!-- Navigation and results links, similar to before -->
     <div class="text-right">
         {% if content.title == "Final Quiz" %}
-        </a>
-         <a href="{{ url_for('results') }}" class="btn button-green-2">
+        <a href="{{ url_for('results') }}" class="btn button-green-2">
             See results > <i class="fas fa-arrow-right"></i>
         </a>
-    {% elif content.next == "Final Quiz" %}
-        <!-- Next quiz is the final quiz -->
+        {% elif content.next == "Final Quiz" %}
         <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn button-green-2">
-           < {{ content.prev | capitalize }}  <i class="fas fa-arrow-right"></i>
+            < {{ content.prev | capitalize }}  <i class="fas fa-arrow-right"></i>
         </a>
         <a href="{{ url_for('quiz_info', quiz_name=content.next) }}" class="btn button-green-2">
             {{ content.next | capitalize }} <i class="fas fa-arrow-right"></i>
         </a>
         {% else %}
-        <!-- Regular quiz prev and next-->
         <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn button-green-2">
             < {{ content.prev | capitalize }} <i class="fas fa-arrow-right"></i>
         </a>

@@ -42,3 +42,19 @@ $(document).ready(function() {
         });
     });
 });
+function checkAnswer(selectedOption, correctOption, element) {
+    const parent = element.parentNode;
+    Array.from(parent.children).forEach(child => child.disabled = true); // Disable all buttons after one is clicked
+
+    let feedbackText = '';
+    if (selectedOption === correctOption) {
+        element.style.backgroundColor = 'lightgreen'; // Correct answer
+        feedbackText = 'Correct!';
+    } else {
+        element.style.backgroundColor = 'salmon'; // Wrong answer
+        feedbackText = 'Not correct, learn why';
+    }
+
+    const feedbackElement = parent.nextElementSibling; // Assumes feedback div follows the options div
+    feedbackElement.innerHTML = feedbackText;
+}

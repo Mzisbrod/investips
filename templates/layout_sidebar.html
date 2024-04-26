@@ -38,19 +38,22 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-2 sidebar">
-            {% if content %}
-                {% if content.title == 'Final Quiz' %}
-                {% elif content.module == "basics" %}
-                    <a class="active">{{ content.module | capitalize }}</a>
-                    <a href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
-                    <a href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
-                {% else %}
-                    <a class="active">{{ class_name | capitalize }}</a>
-                    <a href="{{ url_for('quiz_info', quiz_name=content.next) }}">Quiz</a>
-                {% endif %}
+    <div class="col-md-2 sidebar">
+        {% if content %}
+            {% if content.title == 'Final Quiz' %}
+                <!-- Final Quiz handling -->
+            {% elif content.module == "basics" %}
+                <a class="active">{{ content.module | capitalize }}</a>
+                <a href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
+                <a href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
+            {% else %}
+                <a class="active">{{ class_name | capitalize }}</a>
+                <!-- Use quiz_name for the Quiz link to point to the same quiz -->
+                <a href="{{ url_for('quiz_info', quiz_name=quiz_name) }}">Quiz</a>
             {% endif %}
-            </div>
+        {% endif %}
+    </div>
+
 
             <!-- Content -->
             <div class="col-md-10">
