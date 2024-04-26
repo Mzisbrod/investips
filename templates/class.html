@@ -3,6 +3,8 @@
 <div class="center">
     <h1>{{ content.title }}</h1>
     <p>{{ content.text_content }}</p>
+
+    <iframe width="715" height="400" src="{{content.media_content}}" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <!-- Content Media Goes Here -->
     <div class="text-right">
         {% if class_name == "stocks" %}
@@ -24,5 +26,4 @@
 </div>
 <br>
 {% endblock %}
-
 
