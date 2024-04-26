@@ -4,7 +4,8 @@ classes_content = {
     'stocks': {
         'module': "basics",
         'title': "What's a Stock?",
-        'text_content': 'A stock is like a 🍰 of a company\'s 🎂, representing a share of ownership and a taste of its 💰or losses.',
+        'text_content': 'A stock is like a 🍰 of a company\'s 🎂, representing a share of ownership and a taste of '
+                        'its 💰or losses.',
         'media_content': 'https://www.youtube.com/embed/JrGp4ofULzQ?si=_sKwRkAQZNEPJI2T',
         'next_module': "basics",
         'next': "bonds"
@@ -12,17 +13,20 @@ classes_content = {
     'bonds': {
         'module': "basics",
         'title': "What's a Bond?",
-        'text_content': 'A Bond is like a 🍰 of a company\'s 🎂, representing a share of ownership and a taste of its 💰or losses.',
+        'text_content': 'Imagine lending money to your high school for a new skate park. They promise to pay you back '
+                        'with interest. Safe, steady, but not gonna make you rich quick.',
         'media_content': "https://www.youtube.com/embed/-0HQltcbglw?si=mquEtrO9jqmJx79l",
         'prev': "stocks",
         'prev_module': "classes_content",
-        'next': "Risk vs. Reward",
-        'next_module': "classes_content",
+        'next': "basics",
+        'next_module': "quiz_content",
     },
     'Risk vs. Reward': {
         'module': "classes_content",
-        'title': 'Risk vs. Reward Plot',
-        'text_content': 'Risk vs Reward, Risk vs Reward, Risk vs Reward, Risk vs Reward, Risk vs Reward',
+        'title': 'Risk vs. Reward',
+        'text_content': 'This concept like the seesaw in the playground. If one side goes up, the other comes '
+                        'down. In investing, if you take bigger risks, the potential for big rewards goes up. But so '
+                        'does the chance of taking a hit.',
         'media_content': "https://www.youtube.com/embed/X15rluFUs2M?si=1Y0kdBuOCupaFLqB&amp;start=72",
         'prev': "bonds",
         'prev_module': "classes_content",
@@ -32,7 +36,10 @@ classes_content = {
     'Compounding': {
         'module': "classes_content",
         'title': 'Power of Compounding',
-        'text_content': 'Power of Compounding, Power of Compounding, Power of Compounding, Power of Compounding',
+        'text_content': 'Think of compounding as the ultimate collab on TikTok. You post a video that does well, '
+                        'so it starts earning likes and shares. But here’s the kicker—each new like and share can '
+                        'lead to even more likes and shares. It’s like a snowball rolling down a hill, growing bigger '
+                        'and faster as it goes. That’s your investment growing!',
         'media_content': "https://www.youtube.com/embed/wf91rEGw88Q?si=hzdjKSo7A-pSP7J9",
         'prev': "Risk vs. Reward",
         'prev_module': "classes_content",
@@ -42,34 +49,58 @@ classes_content = {
 }
 
 quiz_content = {
-    'Investment Basics Quiz': {
+    'basics': {
         'module': "quiz_content",
         'title': 'Investment Basics Quiz',
         'questions': [
             {
-                'question_text': "Would you rather have a tiny piece of a big, successful company or own a big chunk of a tiny, unknown company?",
+                'question_text': "Would you rather have a tiny piece of a big, successful company or own a big chunk "
+                                 "of a tiny, unknown company?",
                 'options': ['Tiny piece of a big company', 'Own big chunk of a tiny company'],
                 'explanation': {
-                    'Tiny piece of a big company': '🛡️ Safe Bet! Like buying into a blockbuster franchise—less drama, more steady returns. Big companies = big stability.',
-                    'Own big chunk of a tiny company': '🚀 High-Risk, High-Reward! Like backing an indie film that could hit big or miss hard. It\'s riskier, but if it pops off, you\'re set!'
+                    'Tiny piece of a big company': '🛡️ Safe Bet! Like buying into a blockbuster franchise—less '
+                                                   'drama, more steady returns. Big companies = big stability.',
+                    'Own big chunk of a tiny company': '🚀 High-Risk, High-Reward! Like backing an indie film that '
+                                                       'could hit big or miss hard. It\'s riskier, but if it pops '
+                                                       'off, you\'re set!'
                 },
                 'is_pop_quiz': True
             },
             {
                 'question_text': "What does buying shares in a company make you?",
                 'options': ['A) A customer', 'B) An employee', 'C) An owner', 'D) A creditor'],
-                'solution': 'C) An owner'
+                'solution': 'C) An owner',
+                'explanation': {
+                        'A) A customer': '🛍️ Shopper Alert! Buying shares doesn’t mean shopping, it means owning a '
+                                         'slice of the company pie.',
+                        'B) An employee': '👔 No badge required. Buying shares makes you an owner, not a staff member.',
+                        'C) An owner': '🏢 Part-owner vibes! Shareholders own a piece of the company, influencing it '
+                                       'through votes.',
+                        'D) A creditor': '💸 Not quite. Creditors lend money, shareholders buy ownership.'
+                    },
             },
             {
                 'question_text': "If you lend money to the government by buying bonds, what do you usually get in return?",
                 'options': ['A) Shares in the government', 'B) Regular interest payments',
                             'C) Free government services', 'D) Company stock'],
-                'solution': 'B) Regular interest payments'
+                'solution': 'B) Regular interest payments',
+                'explanation': {
+                        'A) Shares in the government': '🚫 No equity here! Government bonds don’t give shares.',
+                        'B) Regular interest payments': '💵 Income Stream! Bonds pay you back with regular interest—like getting a rent check.',
+                        'C) Free government services': '🆓 No freebies. Buying bonds doesn’t cover your taxes or fees.',
+                        'D) Company stock': '🏢 Wrong aisle! Bonds are loans, not stock investments.'
+                    }
             },
             {
                 'question_text': "Which of these is likely the safest investment?",
                 'options': ['A) Cryptocurrency', 'B) Bonds', 'C) Stocks', 'D) Starting your own business'],
-                'solution': 'B) Bonds'
+                'solution': 'B) Bonds',
+                'explanation': {
+                        'A) Cryptocurrency': '🎢 Ride the rollercoaster! Crypto is exciting but not safe.',
+                        'B) Bonds': '🛡️ Safety First! Bonds offer more stability and predictable returns.',
+                        'C) Stocks': '📈 Ups and downs. Stocks can grow wealth but come with volatility.',
+                        'D) Starting your own business': '🚀 High risk, high reward. Thrilling but risky.'
+                    }
             }
         ],
         'next': "Risk vs. Reward",
@@ -91,19 +122,37 @@ quiz_content = {
             {
                 'question_text': "What does a high-risk investment typically offer?",
                 'options': ['A) Lower returns', 'B) Higher returns', 'C) More stability', 'D) Less excitement'],
-                'solution': 'B) Higher returns'
+                'solution': 'B) Higher returns',
+                'explanation': {
+                    'A) Lower returns': '📉 Not necessarily. High risk often aims for high returns, not low.',
+                    'B) Higher returns': '🚀 Potential Profit! High risk could mean big rewards if things go well.',
+                    'C) More stability': '🔍 Opposite day? High risk means more ups and downs.',
+                    'D) Less excitement': '😂 Guess again! High risk is the thriller genre of investing.'
+                }
             },
             {
                 'question_text': "If a friend offers you a part in their startup, which is true?",
                 'options': ['A) It’s totally safe', 'B) It could make you rich', 'C) You’ll definitely lose money',
                             'D) B & C'],
-                'solution': 'D) B & C'
+                'solution': 'B) It could make you rich',
+                'explanation': {
+                    'A) It’s totally safe': '🛑 Misleading! Startups are risky business ventures.',
+                    'B) It could make you rich': '💰 Potential jackpot! If the startup succeeds, the payoff can be huge.',
+                    'C) You’ll definitely lose money': '💸 Risky, but not a guarantee. Startups can fail or flourish.',
+                    'D) B & C': '🔄 Mixed bag! It’s a gamble with possibilities of riches or rags.'
+                }
             },
             {
                 'question_text': "What should you consider when choosing an investment?",
                 'options': ['A) Color of the logo', 'B) Risk and your comfort with it', 'C) If your friends like it',
                             'D) The weather'],
-                'solution': 'B) Risk and your comfort with it'
+                'solution': 'B) Risk and your comfort with it',
+                'explanation': {
+                    'A) Color of the logo': '🌈 Not the best strategy! Looks aren’t everything in investments.',
+                    'B) Risk and your comfort with it': '🤔 Personal fit! Align investments with your risk tolerance and goals.',
+                    'C) If your friends like it': '👥 Friend-approved? Nice, but not a financial strategy.',
+                    'D) The weather': '☀️🌧️ Irrelevant! Market climates, not weather forecasts, matter here.'
+                }
             }
         ],
         'prev': "Risk vs. Reward",
@@ -128,19 +177,37 @@ quiz_content = {
                 'question_text': "What happens to your money in a compounding interest scenario?",
                 'options': ['A) It decreases over time', 'B) It stays the same',
                             'C) It grows by earning interest on interest', 'D) It gets taxed more'],
-                'solution': 'C) It grows by earning interest on interest'
+                'solution': 'C) It grows by earning interest on interest',
+                'explanation': {
+                    'A) It decreases over time': '📉 Not here! Compounding means growth, not shrinkage.',
+                    'B) It stays the same': '❌ No change? Missed the magic of compounding!',
+                    'C) It grows by earning interest on interest': '🪄 Magic Money! Your investment grows exponentially over time.',
+                    'D) It gets taxed more': '🏦 Tax happens, but that’s not the focus of compounding.'
+                }
             },
             {
                 'question_text': "What's the best strategy for taking advantage of compounding?",
                 'options': ['A) Invest once and never again', 'B) Withdraw profits every year', 'C) Reinvest earnings',
                             'D) Ignore market trends'],
-                'solution': 'C) Reinvest earnings'
+                'solution': 'C) Reinvest earnings',
+                'explanation': {
+                    'A) Invest once and never again': '🔄 Missing out! Reinvesting fuels the compounding engine.',
+                    'B) Withdraw profits every year': '💸 Slows the growth. Leaving earnings in plays into compounding’s strengths.',
+                    'C) Reinvest earnings': '🔄 Power move! Reinvest to maximize the compounding effect.',
+                    'D) Ignore market trends': '👀 Wise to watch, but compounding works independently of trends.'
+                }
             },
             {
                 'question_text': "When is the best time to start investing for compound interest to really show its magic?",
                 'options': ['A) At age 50', 'B) As soon as possible', 'C) After retirement',
                             'D) When the stock market is down'],
-                'solution': 'B) As soon as possible'
+                'solution': 'B) As soon as possible',
+                'explanation': {
+                    'A) At age 50': '🕰️ Better late than never, but earlier is better.',
+                    'B) As soon as possible': '⏳ The sooner, the better! Compounding loves time.',
+                    'C) After retirement': '🚶‍♂️ Late start! Earlier investments have more time to grow.',
+                    'D) When the stock market is down': '📉 Market conditions vary, but starting early always pays off.'
+                }
             }
         ],
         'prev': "Compounding",
@@ -155,18 +222,36 @@ quiz_content = {
             {
                 'question_text': "Which type of investment makes you a part-owner of a company?",
                 'options': ['A) Bonds', 'B) Stocks', 'C) Mutual Funds', 'D) ETFs'],
-                'solution': 'B) Stocks'
+                'solution': 'B) Stocks',
+                'explanation': {
+                    'A) Bonds': '💵 Lender, not owner. Bonds are about debt, not equity.',
+                    'B) Stocks': '📈 Shareholder alert! Owning stocks means owning part of a company.',
+                    'C) Mutual Funds': '🔄 Mix and match! Funds may include stocks but offer diversified holdings.',
+                    'D) ETFs': '🌐 Broad spectrum. ETFs might hold stocks but you own shares of the fund, not the companies directly.'
+                }
             },
             {
                 'question_text': "Which investment type traditionally offers fixed returns?",
                 'options': ['A) Real estate', 'B) Cryptocurrency', 'C) Bonds', 'D) Commodities'],
-                'solution': 'C) Bonds'
+                'solution': 'C) Bonds',
+                'explanation': {
+                    'A) Real estate': '🏠 Variable! Real estate can fluctuate greatly in value.',
+                    'B) Cryptocurrency': '🎢 Wild ride! Crypto is anything but predictable.',
+                    'C) Bonds': '💵 Steady as she goes! Bonds typically offer fixed returns.',
+                    'D) Commodities': '📊 Prices swing! Commodities are subject to market fluctuations.'
+                }
             },
             {
                 'question_text': "How can diversification help your investment portfolio?",
                 'options': ['A) Increases risk', 'B) Decreases risk', 'C) No impact',
                             'D) Only beneficial in short term'],
-                'solution': 'B) Decreases risk'
+                'solution': 'B) Decreases risk',
+                'explanation': {
+                    'A) Increases risk': '🚫 Not quite! Diversification is about spreading risk.',
+                    'B) Decreases risk': '🛡️ Risk spreader! Diversifying can protect against losses in any one area.',
+                    'C) No impact': '⚖️ Incorrect! Diversification aims to balance and mitigate risks.',
+                    'D) Only beneficial in short term': '📅 Misconception! It’s a long-term safety strategy.'
+                }
             }
         ],
         'next': "results",

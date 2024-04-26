@@ -46,18 +46,20 @@ function checkAnswer(selectedOption, correctOption, element, isPopQuiz) {
     const parent = element.parentNode;
     const feedbackElement = parent.nextElementSibling; // Assumes feedback div follows the options div
 
+    console.log(element.getAttribute('data-explanation')); // Debug: Log the explanation attribute
+
+    element.style.backgroundColor = 'lightblue'; // Highlight the selected option
+
+    // Display explanation for both correct and incorrect answers in pop quizzes
     if (isPopQuiz === 'true') {
-        // Display the explanation regardless of the selected option
-        element.style.backgroundColor = 'lightblue'; // Highlight the selected option
         feedbackElement.innerHTML = element.getAttribute('data-explanation');
     } else {
-        // Standard quiz logic for non-pop quiz questions
         if (selectedOption === correctOption) {
             element.style.backgroundColor = 'lightgreen'; // Correct answer
-            feedbackElement.innerHTML = 'Correct!';
+            feedbackElement.innerHTML = 'Correct! ' + element.getAttribute('data-explanation');
         } else {
             element.style.backgroundColor = 'salmon'; // Incorrect answer
-            feedbackElement.innerHTML = 'Not correct, learn why';
+            feedbackElement.innerHTML = 'Not correct: ' + element.getAttribute('data-explanation');
         }
     }
 

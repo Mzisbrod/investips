@@ -46,6 +46,7 @@
                 <a class="active">{{ content.module | capitalize }}</a>
                 <a href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
                 <a href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
+                <a href="{{ url_for('quiz_info', quiz_name=content.module) }}">Quiz</a>
             {% else %}
                 <a class="active">{{ class_name | capitalize }}</a>
                 <!-- Use quiz_name for the Quiz link to point to the same quiz -->

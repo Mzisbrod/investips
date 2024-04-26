@@ -9,7 +9,9 @@
             <div class="options">
                 {% for option in question.options %}
                 <button class="option"
-                        data-explanation="{{ question.explanation[option] if question.is_pop_quiz }}"
+                        {% if question.explanation %}
+                        data-explanation="{{ question.explanation.get(option, 'No explanation available') }}"
+                        {% endif %}
                         onclick="checkAnswer('{{ option }}', '{{ question.solution if not question.is_pop_quiz else '' }}', this, '{{ 'true' if question.is_pop_quiz else 'false' }}')">
                     {{ option }}
                 </button>
