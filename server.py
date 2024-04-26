@@ -39,51 +39,6 @@ classes_content = {
         'next': "Compounding Quiz",
         'next_module': "quiz_content",
     },
-    # Add more classes as needed
-}
-pop_quiz_content = {
-    'Investment Basics Pop Quiz': {
-        'module': "pop_quiz_content",
-        'title': 'Investment Basics Pop Quiz',
-        'text_content': 'Would you rather have a tiny piece of a big, successful company or own a big chunk of a '
-                        'tiny, unknown company?',
-        'answer_content': [
-            {'option': 'Tiny piece of a big company', 'explanation': '🛡️ Safe Bet! Like buying into a blockbuster '
-                                                                     'franchise—less drama, more steady returns. Big '
-                                                                     'companies = big stability.'},
-            {'option': 'Own big chunk of a tiny company', 'explanation': '🚀 High-Risk, High-Reward! Like backing an '
-                                                                         'indie film that could hit big or miss hard.'
-                                                                         ' It\'s riskier, but if it pops off, '
-                                                                         'you\'re set!'}
-        ]
-    },
-    'Risk vs Reward Pop Quiz': {
-        'module': "pop_quiz_content",
-        'title': 'Risk vs Reward Pop Quiz',
-        'text_content': 'Would you rather win $50 for sure or flip a coin for a chance to win $100?',
-        'answer_content': [
-            {'option': 'Take the $50', 'explanation': '🎉 Guaranteed Cash! Like scoring a guaranteed VIP concert '
-                                                      'ticket. It\'s not the front row, but you’re definitely in the '
-                                                      'party!'},
-            {'option': 'Flip the coin', 'explanation': '🎲 Double or Nothing! Like entering a dance battle—win and '
-                                                       'you’re the star, lose and it’s just a cool story. Big gamble, '
-                                                       'big glory!'}
-        ]
-    },
-    'Power of Compounding Pop Quiz': {
-        'module': "pop_quiz_content",
-        'title': 'Power of Compounding Pop Quiz',
-        'text_content': 'Would you want your money to grow just by what you add each year, or each dollar earned '
-                        'brings in more dollars over time?',
-        'answer_content': [
-            {'option': 'Just my additions', 'explanation': '🔄 Consistent Adds! Like keeping your social media feed '
-                                                           'fresh by only your posts. Steady and totally under your '
-                                                           'control!'},
-            {'option': 'Money making more money', 'explanation': '💸 Money Multiplier! Like your video going viral '
-                                                                 'and pulling more views on its own. Each view drags '
-                                                                 'in more, growing your fame without extra clips!'}
-        ]
-    }
 }
 
 quiz_content = {
@@ -91,6 +46,15 @@ quiz_content = {
         'module': "quiz_content",
         'title': 'Investment Basics Quiz',
         'questions': [
+            {
+                'question_text': "Would you rather have a tiny piece of a big, successful company or own a big chunk of a tiny, unknown company?",
+                'options': ['Tiny piece of a big company', 'Own big chunk of a tiny company'],
+                'explanation': {
+                    'Tiny piece of a big company': '🛡️ Safe Bet! Like buying into a blockbuster franchise—less drama, more steady returns. Big companies = big stability.',
+                    'Own big chunk of a tiny company': '🚀 High-Risk, High-Reward! Like backing an indie film that could hit big or miss hard. It\'s riskier, but if it pops off, you\'re set!'
+                },
+                'is_pop_quiz': True
+            },
             {
                 'question_text': "What does buying shares in a company make you?",
                 'options': ['A) A customer', 'B) An employee', 'C) An owner', 'D) A creditor'],
@@ -115,6 +79,15 @@ quiz_content = {
         'module': "quiz_content",
         'title': 'Risk vs Reward Quiz',
         'questions': [
+            {
+                'question_text': "Would you rather win $50 for sure or flip a coin for a chance to win $100?",
+                'options': ['Take the $50', 'Flip the coin'],
+                'explanation': {
+                    'Take the $50': '🎉 Guaranteed Cash! Like scoring a guaranteed VIP concert ticket. It\'s not the front row, but you’re definitely in the party!',
+                    'Flip the coin': '🎲 Double or Nothing! Like entering a dance battle—win and you’re the star, lose and it’s just a cool story. Big gamble, big glory!'
+                },
+                'is_pop_quiz': True
+            },
             {
                 'question_text': "What does a high-risk investment typically offer?",
                 'options': ['A) Lower returns', 'B) Higher returns', 'C) More stability', 'D) Less excitement'],
@@ -142,6 +115,15 @@ quiz_content = {
         'module': "quiz_content",
         'title': 'Power of Compounding Quiz',
         'questions': [
+            {
+                'question_text': "Would you want your money to grow just by what you add each year, or each dollar earned brings in more dollars over time?",
+                'options': ['Just my additions', 'Money making more money'],
+                'explanation': {
+                    'Just my additions': '🔄 Consistent Adds! Like keeping your social media feed fresh by only your posts. Steady and totally under your control!',
+                    'Money making more money': '💸 Money Multiplier! Like your video going viral and pulling more views on its own. Each view drags in more, growing your fame without extra clips!'
+                },
+                'is_pop_quiz': True
+            },
             {
                 'question_text': "What happens to your money in a compounding interest scenario?",
                 'options': ['A) It decreases over time', 'B) It stays the same',
@@ -233,6 +215,7 @@ def quiz_info(quiz_name):
     content = quiz_content.get(quiz_name, None)
     if not content:
         return "Quiz not found", 404
+
     # Normal GET request handling
     return render_template('quiz.html', content=content, class_name=quiz_name, quiz_name=quiz_name)
 
@@ -262,22 +245,6 @@ def submit_quiz(quiz_name):
 def results():
     user_score = sum(score.values()) / len(score.keys()) * 100
     return render_template('results.html', results=score, score=user_score, score_class=score_to_class)
-
-
-@app.route('/pop_quiz/<quiz_name>', methods=['GET'])
-def pop_quiz_info(quiz_name):
-    content = pop_quiz_content.get(quiz_name, None)
-    if not content:
-        return "Pop Quiz not found", 404
-    return render_template('pop_quiz.html', content=content, quiz_name=quiz_name)
-
-
-@app.route('/submit_pop_quiz/<quiz_name>', methods=['POST'])
-def submit_pop_quiz(quiz_name):
-    selected_option = int(request.form.get('selected_option'))
-    content = pop_quiz_content.get(quiz_name, None)
-    explanation = content['answer_content'][selected_option]['explanation'] if content else "No explanation available."
-    return jsonify({'explanation': explanation})
 
 
 if __name__ == '__main__':

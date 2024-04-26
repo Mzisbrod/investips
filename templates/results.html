@@ -13,5 +13,19 @@
         {% endif %}
     {% endfor %}
     <hr>
+<!-- quiz_results.html -->
+{% for explanation in explanations %}
+    <div>
+        <h4>{{ explanation.question }}</h4>
+        <p>Your choice: {{ explanation.selected }}</p>
+        {% if explanation.explanation %}
+            <p>Explanation: {{ explanation.explanation }}</p>
+        {% elif explanation.correct %}
+            <p>Correct!</p>
+        {% else %}
+            <p>Incorrect.</p>
+        {% endif %}
+    </div>
+{% endfor %}
 
 {% endblock %}

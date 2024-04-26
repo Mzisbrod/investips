@@ -42,19 +42,29 @@ $(document).ready(function() {
         });
     });
 });
-function checkAnswer(selectedOption, correctOption, element) {
+function checkAnswer(selectedOption, correctOption, element, isPopQuiz) {
     const parent = element.parentNode;
-    Array.from(parent.children).forEach(child => child.disabled = true); // Disable all buttons after one is clicked
+    const feedbackElement = parent.nextElementSibling; // Assumes feedback div follows the options div
 
-    let feedbackText = '';
-    if (selectedOption === correctOption) {
-        element.style.backgroundColor = 'lightgreen'; // Correct answer
-        feedbackText = 'Correct!';
+    if (isPopQuiz === 'true') {
+        // Display the explanation regardless of the selected option
+        element.style.backgroundColor = 'lightblue'; // Highlight the selected option
+        feedbackElement.innerHTML = element.getAttribute('data-explanation');
     } else {
-        element.style.backgroundColor = 'salmon'; // Wrong answer
-        feedbackText = 'Not correct, learn why';
+        // Standard quiz logic for non-pop quiz questions
+        if (selectedOption === correctOption) {
+            element.style.backgroundColor = 'lightgreen'; // Correct answer
+            feedbackElement.innerHTML = 'Correct!';
+        } else {
+            element.style.backgroundColor = 'salmon'; // Incorrect answer
+            feedbackElement.innerHTML = 'Not correct, learn why';
+        }
     }
 
-    const feedbackElement = parent.nextElementSibling; // Assumes feedback div follows the options div
-    feedbackElement.innerHTML = feedbackText;
+    // Disable all options after one is selected to prevent multiple selections
+    Array.from(parent.children).forEach(child => {
+        if (child.tagName === 'BUTTON') {  // Ensure only buttons are disabled
+            child.disabled = true;
+        }
+    });
 }
