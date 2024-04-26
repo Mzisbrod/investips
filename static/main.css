@@ -9,7 +9,7 @@ body {
   width: 200px;
   background-color: white;
   text-align: center;
-  font-size: 22px;
+  font-size: 16px;
   flex: 0 0 200px; /* Sidebar width and not allowed to grow or shrink */
   overflow: auto;
   font-family: Arial;
@@ -27,7 +27,7 @@ body {
 /* Active/current link */
 .sidebar a.active {
   font-weight: bold;
-  color: #121213;
+  color: #383838;
 }
 
 /* Links on mouse-over */
@@ -70,21 +70,21 @@ body {
 .hero-text {
   margin-top: 60px;
   font-size: 88px;
-  font-weight: bold;
-  font-family: Serif;
+  /*font-weight: bold;*/
+  font-family: Arial;
 }
 
 .hero-subtext {
   margin-top: 10px;
   font-size: 28px;
-  font-weight: bold;
-  font-family: Serif;
+  /*font-weight: bold;*/
+  font-family: Arial;
 }
 
 .button-green {
   margin-top: 30px;
   color: white;
-  background-color: rgb(60, 177, 60);
+  background-color: rgb(49, 145, 49);
   height: 50px;
   width: 180px;
   padding: 5px;
@@ -106,7 +106,7 @@ body {
 }
 
 .nav-link {
-  background-color: #f4f4f4; /* Light grey background for the links */
+  background-color: #f8f9fa; /* Light grey background for the links */
   text-align: center; /* Center-aligns the text within the links */
   padding: 10px;
   border-radius: 5px; /* Rounds the corners of the link boxes */
@@ -116,7 +116,7 @@ body {
 }
 
 .nav-link:hover {
-  background-color: #efefef; /* Changes background color on hover */
+  background-color: #f8f9fa; /* Changes background color on hover */
   color: limegreen; /* Changes background color on hover to light green */
 
 }
@@ -141,4 +141,14 @@ body {
   padding: 8px;
   font-size: 14px;
   border-radius: 5px;
+}
+
+.navbar-brand {
+  font-size: 20px; /* Define initial font properties if needed */
+  color: #545455 !important; /* Set default color for the brand */
+  transition: color 0.3s; /* Smooth transition for color change */
+}
+
+.navbar-brand:hover {
+  color: limegreen !important; /* Hover color to match the links */
 }
