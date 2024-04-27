@@ -18,7 +18,7 @@ classes_content = {
         'media_content': "https://www.youtube.com/embed/-0HQltcbglw?si=mquEtrO9jqmJx79l",
         'prev': "stocks",
         'prev_module': "classes_content",
-        'next': "basics",
+        'next': "Basics Quiz",
         'next_module': "quiz_content",
     },
     'Risk vs. Reward': {
@@ -49,11 +49,13 @@ classes_content = {
 }
 
 quiz_content = {
-    'basics': {
+    'Basics Quiz': {
+        'prev': "bonds",
         'module': "quiz_content",
         'title': 'Investment Basics Quiz',
         'questions': [
             {
+                "questionId": "01",
                 'question_text': "Would you rather have a tiny piece of a big, successful company or own a big chunk "
                                  "of a tiny, unknown company?",
                 'options': ['Tiny piece of a big company', 'Own big chunk of a tiny company'],
@@ -67,6 +69,7 @@ quiz_content = {
                 'is_pop_quiz': True
             },
             {
+                "questionId": "02",
                 'question_text': "What does buying shares in a company make you?",
                 'options': ['A) A customer', 'B) An employee', 'C) An owner', 'D) A creditor'],
                 'solution': 'C) An owner',
@@ -80,6 +83,7 @@ quiz_content = {
                     },
             },
             {
+                "questionId": "03",
                 'question_text': "If you lend money to the government by buying bonds, what do you usually get in return?",
                 'options': ['A) Shares in the government', 'B) Regular interest payments',
                             'C) Free government services', 'D) Company stock'],
@@ -92,6 +96,7 @@ quiz_content = {
                     }
             },
             {
+                "questionId": "04",
                 'question_text': "Which of these is likely the safest investment?",
                 'options': ['A) Cryptocurrency', 'B) Bonds', 'C) Stocks', 'D) Starting your own business'],
                 'solution': 'B) Bonds',
@@ -111,6 +116,7 @@ quiz_content = {
         'title': 'Risk vs Reward Quiz',
         'questions': [
             {
+                "questionId": "05",
                 'question_text': "Would you rather win $50 for sure or flip a coin for a chance to win $100?",
                 'options': ['Take the $50', 'Flip the coin'],
                 'explanation': {
@@ -120,6 +126,7 @@ quiz_content = {
                 'is_pop_quiz': True
             },
             {
+                "questionId": "06",
                 'question_text': "What does a high-risk investment typically offer?",
                 'options': ['A) Lower returns', 'B) Higher returns', 'C) More stability', 'D) Less excitement'],
                 'solution': 'B) Higher returns',
@@ -131,6 +138,7 @@ quiz_content = {
                 }
             },
             {
+                "questionId": "07",
                 'question_text': "If a friend offers you a part in their startup, which is true?",
                 'options': ['A) It’s totally safe', 'B) It could make you rich', 'C) You’ll definitely lose money',
                             'D) B & C'],
@@ -143,6 +151,7 @@ quiz_content = {
                 }
             },
             {
+                "questionId": "08",
                 'question_text': "What should you consider when choosing an investment?",
                 'options': ['A) Color of the logo', 'B) Risk and your comfort with it', 'C) If your friends like it',
                             'D) The weather'],
@@ -165,6 +174,7 @@ quiz_content = {
         'title': 'Power of Compounding Quiz',
         'questions': [
             {
+                "questionId": "09",
                 'question_text': "Would you want your money to grow just by what you add each year, or each dollar earned brings in more dollars over time?",
                 'options': ['Just my additions', 'Money making more money'],
                 'explanation': {
@@ -174,6 +184,7 @@ quiz_content = {
                 'is_pop_quiz': True
             },
             {
+                "questionId": "10",
                 'question_text': "What happens to your money in a compounding interest scenario?",
                 'options': ['A) It decreases over time', 'B) It stays the same',
                             'C) It grows by earning interest on interest', 'D) It gets taxed more'],
@@ -186,6 +197,7 @@ quiz_content = {
                 }
             },
             {
+                "questionId": "11",
                 'question_text': "What's the best strategy for taking advantage of compounding?",
                 'options': ['A) Invest once and never again', 'B) Withdraw profits every year', 'C) Reinvest earnings',
                             'D) Ignore market trends'],
@@ -198,6 +210,7 @@ quiz_content = {
                 }
             },
             {
+                "questionId": "12",
                 'question_text': "When is the best time to start investing for compound interest to really show its magic?",
                 'options': ['A) At age 50', 'B) As soon as possible', 'C) After retirement',
                             'D) When the stock market is down'],
@@ -220,6 +233,7 @@ quiz_content = {
         'title': 'Final Quiz',
         'questions': [
             {
+                "questionId": "13",
                 'question_text': "Which type of investment makes you a part-owner of a company?",
                 'options': ['A) Bonds', 'B) Stocks', 'C) Mutual Funds', 'D) ETFs'],
                 'solution': 'B) Stocks',
@@ -231,6 +245,7 @@ quiz_content = {
                 }
             },
             {
+                "questionId": "14",
                 'question_text': "Which investment type traditionally offers fixed returns?",
                 'options': ['A) Real estate', 'B) Cryptocurrency', 'C) Bonds', 'D) Commodities'],
                 'solution': 'C) Bonds',
@@ -242,6 +257,7 @@ quiz_content = {
                 }
             },
             {
+                "questionId": "15",
                 'question_text': "How can diversification help your investment portfolio?",
                 'options': ['A) Increases risk', 'B) Decreases risk', 'C) No impact',
                             'D) Only beneficial in short term'],
@@ -305,25 +321,25 @@ def quiz_info(quiz_name):
     return render_template('quiz.html', content=content, class_name=quiz_name, quiz_name=quiz_name)
 
 
-@app.route('/submit_quiz/<quiz_name>', methods=['POST'])
-def submit_quiz(quiz_name):
+@app.route('/submit_answer/<question_id>', methods=['POST'])
+def submit_answer(question_id):
+    quiz_name = request.form['quizName']
+    print(quiz_name)
+    selected_option = request.form['selectedOption']
+    print(selected_option)
     quiz = quiz_content.get(quiz_name)
+    print(quiz)
+
     if not quiz:
-        return "Quiz not found", 404
+        return jsonify({"error": "Quiz not found"}), 404
 
-    total_score = 0
-    total_questions = len(quiz['questions'])
-    for i in range(total_questions):
-        # Construct the input name based on the index
-        input_name = f'selected_answer{i}'
-        submitted_answer = request.form.get(input_name)
-        correct_answer = quiz['questions'][i]['solution']
-
-        if submitted_answer == correct_answer:
-            total_score += 1
-
-    # Continue to process the score as needed
-    return jsonify(score=total_score, total=total_questions), 200
+    question = next((q for q in quiz['questions'] if q['id'] == question_id), None)
+    if question:
+        correct = selected_option == question['solution']
+        # Update the score logic here, for example using session or database
+        return jsonify(correct=correct), 200
+    else:
+        return jsonify({"error": "Question not found"}), 404
 
 
 @app.route('/results')

@@ -15,12 +15,13 @@
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
       <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+      <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
 
       <title>invesTIPS</title>
   </head>
   <body>
     <nav class="navbar bg navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">invesTIPS</a>
+        <a class="navbar-brand" href="{{ url_for('main') }}">invesTIPS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,7 +39,7 @@
     <div class="container center">
         {% block content %}
         {% endblock %}
-        <br><br><br><hr>
+        <br><hr>
         <div class="grid">
             <a class="nav-link" href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
             <a class="nav-link" href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>

@@ -94,6 +94,7 @@ body {
 }
 
 .button-green:hover {
+  background-color: rgb(49, 120, 49);
   color: white;
   transform: scale(1.05);
 }
@@ -126,7 +127,7 @@ body {
 }
 
 .button-green-2 {
-  background-color: #ccc;
+  background-color: rgb(49, 140, 49);
   color: white;
   height: 40px;
   padding: 8px;
@@ -135,7 +136,7 @@ body {
 }
 
 .button-green-2:hover {
-  background-color: #c9c9c9;
+  background-color: rgb(49, 120, 49);
   color: white;
   height: 40px;
   padding: 8px;
@@ -151,4 +152,80 @@ body {
 
 .navbar-brand:hover {
   color: limegreen !important; /* Hover color to match the links */
+}
+
+.content-text {
+  font-size: 24px;
+  font-family: Arial;
+  padding: 20px;
+  width: auto;
+  justify-content: center;
+}
+
+.content {
+  margin: auto;
+  width: 400px;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.title {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.media {
+  width: inherit;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.quiz-form {
+    font-family: Arial, sans-serif; /* Sets a nice, readable font */
+    max-width: 600px; /* Limits the maximum width of the form */
+    margin: auto; /* Centers the form horizontally */
+    padding: 20px;
+    background-color: #f4f4f4; /* A light gray background */
+    border-radius: 8px; /* Rounded corners for the form */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Adds subtle shadow */
+}
+
+.question {
+    margin-bottom: 20px; /* Adds space between questions */
+}
+
+.question-text {
+    font-size: 16px; /* Sets the text size for questions */
+    color: #333; /* Dark gray color for better readability */
+}
+
+.options {
+    margin-top: 10px;
+}
+
+.option {
+    background-color: rgb(0, 128, 0);
+    color: white; /* White text color */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Rounded corners for buttons */
+    padding: 10px 20px; /* Padding inside the buttons */
+    margin-right: 10px; /* Space between buttons */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    font-size: 12px;
+    margin: 5px;
+}
+
+.option:hover {
+    background-color: rgb(49, 120, 49);
+}
+
+.feedback {
+    margin-top: 5px;
+    color: red; /* Feedback color, can change based on your preference */
+    min-height: 20px; /* Ensures feedback area has space */
+}
+
+.l {
+    color: bl;
 }

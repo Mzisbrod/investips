@@ -42,24 +42,49 @@ $(document).ready(function() {
         });
     });
 });
-function checkAnswer(selectedOption, correctOption, element, isPopQuiz) {
+function checkAnswer(selectedOption, correctOption, element, isPopQuiz, questionId) {
     const parent = element.parentNode;
     const feedbackElement = parent.nextElementSibling; // Assumes feedback div follows the options div
 
     console.log(element.getAttribute('data-explanation')); // Debug: Log the explanation attribute
 
-    element.style.backgroundColor = 'lightblue'; // Highlight the selected option
+    /*element.style.backgroundColor = 'lightblue'; // Highlight the selected option*/
+
 
     // Display explanation for both correct and incorrect answers in pop quizzes
     if (isPopQuiz === 'true') {
         feedbackElement.innerHTML = element.getAttribute('data-explanation');
+        feedbackElement.style.color = 'dodgerblue'
     } else {
         if (selectedOption === correctOption) {
-            element.style.backgroundColor = 'lightgreen'; // Correct answer
             feedbackElement.innerHTML = 'Correct! ' + element.getAttribute('data-explanation');
+            feedbackElement.style.color = 'green'
+
+
+            console.log(questionId)
+
+            $.ajax({
+            type: "POST",
+            url: '/submit_answer/' + questionId, // Suggest changing URL to reflect score updating
+            data: {
+                quizName: '{{ content.title }}',
+                questionId: questionId, // Passing question ID to server
+                correct: true // Indicating this was a correct answer
+            },
+            success: function(response) {
+                // Update the score display based on server response
+                console.log("sent to backend")
+                updateScoreDisplay(response.updatedScore);
+            },
+            error: function(xhr) {
+                console.error('Error:', xhr.responseText);
+                feedbackElement.innerHTML = 'Error updating score. Please try again.';
+                feedbackElement.style.color = 'red';
+            }
+        });
         } else {
-            element.style.backgroundColor = 'salmon'; // Incorrect answer
             feedbackElement.innerHTML = 'Not correct: ' + element.getAttribute('data-explanation');
+            feedbackElement.style.color = 'red'
         }
     }
 

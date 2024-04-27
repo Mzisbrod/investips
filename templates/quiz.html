@@ -1,48 +1,50 @@
-{% extends "layout_sidebar.html" %}
+{% extends "layout.html" %}
+
 {% block content %}
 <div class="center">
+  <div class="content">
     <h1>{{ content.title }}</h1>
-    <div id="quizForm">
-        {% for question in content.questions %}
-        <div class="question">
-            <p>{{ question.question_text }}</p>
-            <div class="options">
-                {% for option in question.options %}
-                <button class="option"
-                        {% if question.explanation %}
-                        data-explanation="{{ question.explanation.get(option, 'No explanation available') }}"
-                        {% endif %}
-                        onclick="checkAnswer('{{ option }}', '{{ question.solution if not question.is_pop_quiz else '' }}', this, '{{ 'true' if question.is_pop_quiz else 'false' }}')">
-                    {{ option }}
-                </button>
-                {% endfor %}
-            </div>
-            <div class="feedback" id="feedback_{{ loop.index0 }}"></div>
+    <div id="quizForm" class="quiz-form">
+    {% for question in content.questions %}
+    <div class="question" data-question-id="{{ question.questionId }}">
+        <p class="question-text">{{ question.question_text }}</p>
+        <div class="options">
+            {% for option in question.options %}
+            <button class="option" aria-describedby="feedback_{{ loop.index0 }}"
+                    data-explanation="{{ question.explanation.get(option, 'No explanation available') }}"
+                    onclick="checkAnswer('{{ option }}', '{{ question.solution if not question.is_pop_quiz else '' }}', this, '{{ 'true' if question.is_pop_quiz else 'false' }}', {{question.questionId}})">
+                {{ option }}
+            </button>
+            {% endfor %}
         </div>
-        {% endfor %}
+        <div class="feedback" id="feedback_{{ loop.index0 }}"></div>
     </div>
-    <!-- Navigation and results links, similar to before -->
-    <div class="text-right">
+    {% endfor %}
+    </div>
+
+    <!-- Navigation and results links -->
+    <div class="content mt-3">
         {% if content.title == "Final Quiz" %}
         <a href="{{ url_for('results') }}" class="btn button-green-2">
-            See results > <i class="fas fa-arrow-right"></i>
+            See results <i class="fas fa-arrow-right"></i>
         </a>
         {% elif content.next == "Final Quiz" %}
         <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn button-green-2">
-            < {{ content.prev | capitalize }}  <i class="fas fa-arrow-right"></i>
+             <i class="fas fa-arrow-left"></i> {{ content.prev | capitalize }}
         </a>
         <a href="{{ url_for('quiz_info', quiz_name=content.next) }}" class="btn button-green-2">
             {{ content.next | capitalize }} <i class="fas fa-arrow-right"></i>
         </a>
         {% else %}
         <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn button-green-2">
-            < {{ content.prev | capitalize }} <i class="fas fa-arrow-right"></i>
+           <i class="fas fa-arrow-left"></i> {{ content.prev | capitalize }}
         </a>
         <a href="{{ url_for('class_info', class_name=content.next) }}" class="btn button-green-2">
-            {{ content.next | capitalize }} ><i class="fas fa-arrow-right"></i>
+            {{ content.next | capitalize }} <i class="fas fa-arrow-right"></i>
         </a>
         {% endif %}
     </div>
+  </div>
 </div>
 <br>
 {% endblock %}

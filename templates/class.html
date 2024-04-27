@@ -1,26 +1,24 @@
-{% extends "layout_sidebar.html" %}
+{% extends "layout.html" %}
 {% block content %}
 <div class="center">
-    <h1>{{ content.title }}</h1>
-    <p>{{ content.text_content }}</p>
-
-    <iframe width="715" height="400" src="{{content.media_content}}" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <!-- Content Media Goes Here -->
-    <div class="text-right">
+    <div class="content">
+        <h1 class="title">{{ content.title }}</h1>
+        <iframe class='media' src="{{content.media_content}}" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <!-- Content Media Goes Here -->
+        <p class="content-text">{{ content.text_content }}</p>
+    </div>
+    <div class="content">
         {% if class_name == "stocks" %}
-        {% else %}
-            <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn button-green-2">
-                < {{ content.prev | capitalize }} <i class="fas fa-arrow-right"></i>
-            </a>
-        {% endif %}
-        {% if content.module == 'basics' %}
             <a href="{{ url_for('class_info', class_name=content.next) }}" class="btn button-green-2">
-                {{ content.next | capitalize }} ><i class="fas fa-arrow-right"></i>
+                {{ content.next | capitalize }} <i class="fas fa-arrow-right"></i>
             </a>
         {% else %}
+            <a href="{{ url_for('class_info', class_name=content.prev) }}" class="btn button-green-2 mr-2">
+                 <i class="fas fa-arrow-left"></i> {{ content.prev | capitalize }}
+            </a>
             <a href="{{ url_for('quiz_info', quiz_name=content.next) }}" class="btn button-green-2">
-            {{ content.next | capitalize }} ><i class="fas fa-arrow-right"></i>
-        </a>
+            {{ content.next | capitalize }} <i class="fas fa-arrow-right"></i>
+            </a>
         {% endif %}
     </div>
 </div>
