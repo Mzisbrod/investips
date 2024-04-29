@@ -229,3 +229,12 @@ body {
 .l {
     color: bl;
 }
+
+.iframe_styling{
+    width: 320px; 
+    height: 584px;
+    display: block;
+    margin: auto;
+
+
+}
