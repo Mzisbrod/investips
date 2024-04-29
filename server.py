@@ -39,6 +39,7 @@ classes_content = {
         'text_content': '<Add content here>',
         'media_content': "https://www.youtube.com/embed/O-QwiAGtu88",
         'prev': "Risk vs. Reward",
+        'prev_module': "classes_content",
         'next': "Risk vs. Reward Quiz",
         'next_module': "quiz_content",
     },
@@ -60,7 +61,8 @@ classes_content = {
         'title': 'Compounding',
         'text_content': '<Add content here>',
         'media_content': "https://www.youtube.com/embed/V7WLYoQNu80",
-        'prev': "Risk vs. Reward",
+        'prev': "Compounding",
+        'prev_module': "classes_content",
         'next': "Compounding Quiz",
         'next_module': "quiz_content",
     }
@@ -182,7 +184,7 @@ quiz_content = {
                 }
             }
         ],
-        'prev': "Risk vs. Reward",
+        'prev': "Risk vs. Reward 2",
         'prev_module': "classes_content",
         'next': "Compounding",
         'next_module': "classes_content",
@@ -241,7 +243,7 @@ quiz_content = {
                 }
             }
         ],
-        'prev': "Compounding",
+        'prev': "Compounding 2",
         'prev_module': "classes_content",
         'next': "Final Quiz",
         'next_module': "quiz_content",
