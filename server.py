@@ -30,6 +30,15 @@ classes_content = {
         'media_content': "https://www.youtube.com/embed/j1TioBRFvwo",
         'prev': "bonds",
         'prev_module': "classes_content",
+        'next': "Risk vs. Reward 2",
+        'next_module': "classes_content",
+    },
+    'Risk vs. Reward 2': {
+        'module': "classes_content",
+        'title': 'Risk vs. Reward',
+        'text_content': '<Add content here>',
+        'media_content': "https://www.youtube.com/embed/O-QwiAGtu88",
+        'prev': "Risk vs. Reward",
         'next': "Risk vs. Reward Quiz",
         'next_module': "quiz_content",
     },
@@ -40,12 +49,21 @@ classes_content = {
                         'so it starts earning likes and shares. But here’s the kicker—each new like and share can '
                         'lead to even more likes and shares. It’s like a snowball rolling down a hill, growing bigger '
                         'and faster as it goes. That’s your investment growing!',
-        'media_content': "https://www.youtube.com/embed/wf91rEGw88Q?si=hzdjKSo7A-pSP7J9",
+        'media_content': "https://www.youtube.com/embed/G2ruiumT8xc",
         'prev': "Risk vs. Reward",
         'prev_module': "classes_content",
+        'next': "Compounding 2",
+        'next_module': "classes_content",
+    },
+    'Compounding 2': {
+        'module': "classes_content",
+        'title': 'Compounding',
+        'text_content': '<Add content here>',
+        'media_content': "https://www.youtube.com/embed/V7WLYoQNu80",
+        'prev': "Risk vs. Reward",
         'next': "Compounding Quiz",
         'next_module': "quiz_content",
-    },
+    }
 }
 
 quiz_content = {

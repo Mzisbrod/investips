@@ -133,6 +133,7 @@ body {
   padding: 8px;
   font-size: 14px;
   border-radius: 5px;
+  display: inline-block;
 }
 
 .button-green-2:hover {
@@ -164,7 +165,7 @@ body {
 
 .content {
   margin: auto;
-  width: 400px;
+  width: 800px;
   padding: 10px;
   align-items: center;
   justify-content: center;
@@ -182,7 +183,7 @@ body {
 
 .quiz-form {
     font-family: Arial, sans-serif; /* Sets a nice, readable font */
-    max-width: 600px; /* Limits the maximum width of the form */
+    max-width: 800px; /* Limits the maximum width of the form */
     margin: auto; /* Centers the form horizontally */
     padding: 20px;
     background-color: #f4f4f4; /* A light gray background */
@@ -195,7 +196,7 @@ body {
 }
 
 .question-text {
-    font-size: 16px; /* Sets the text size for questions */
+    font-size: 20px; /* Sets the text size for questions */
     color: #333; /* Dark gray color for better readability */
 }
 
@@ -212,7 +213,7 @@ body {
     margin-right: 10px; /* Space between buttons */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s; /* Smooth transition for hover effect */
-    font-size: 12px;
+    font-size: 13px;
     margin: 5px;
 }
 
@@ -227,14 +228,17 @@ body {
 }
 
 .l {
-    color: bl;
+    color: black;
 }
 
 .iframe_styling{
     width: 320px; 
-    height: 584px;
+    height: 450px;
     display: block;
     margin: auto;
+}
 
-
+/* Remove arrow next to dropdown in navbar*/
+.navbar .dropdown-toggle::after {
+    display: none;
 }

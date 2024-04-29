@@ -1,51 +1,73 @@
 <!doctype html>
 <html lang="en">
-  <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="icon" href="data:,">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:,">
 
-      <!-- JQuery -->
-      <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-      <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- JQuery and JQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-      <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
-      <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
-
-      <title>invesTIPS</title>
-  </head>
-  <body>
-    <nav class="navbar bg navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('main') }}">invesTIPS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Bootstrap CSS and JavaScript -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+</head>
+<body>
+<nav class="navbar bg navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('main') }}">invesTIPS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav mr-auto">
-                <a class="nav-link" href="{{ url_for('class_info', class_name='stocks') }}">Basics</a>
-                <a class="nav-link" href="{{ url_for('class_info', class_name='Risk vs. Reward') }}">Risk vs. Reward</a>
-                <a class="nav-link" href="{{ url_for('class_info', class_name='Compounding') }}">Power of Compounding</a>
-                <a class="nav-link" href="{{ url_for('quiz_info', quiz_name='Final Quiz') }}">Final Quiz</a>
-            </div>
-        </div>
-    </nav>
+    </button>
 
-    <div class="container center">
-        {% block content %}
-        {% endblock %}
-        <br><hr>
-        <div class="grid">
-            <a class="nav-link" href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
-            <a class="nav-link" href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
-            <a class="nav-link" href="{{ url_for('class_info', class_name='Risk vs. Reward') }}">Risk vs. Reward</a>
-            <a class="nav-link" href="{{ url_for('class_info', class_name='Compounding') }}">Power of Compounding</a>
-        </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="basicDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Basics
+                </a>
+                <div class="dropdown-menu" aria-labelledby="basicDropdown">
+                    <a class="dropdown-item" href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
+                    <a class="dropdown-item" href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="rvrDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Risk vs. Reward
+                </a>
+                <div class="dropdown-menu" aria-labelledby="rvrDropdown">
+                    <a class="dropdown-item" href="{{ url_for('class_info', class_name='Risk vs. Reward') }}">Lesson 1</a>
+                    <a class="dropdown-item" href="{{ url_for('class_info', class_name='Risk vs. Reward 2') }}">Lesson 2</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="cmpDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Power of Compounding
+                </a>
+                <div class="dropdown-menu" aria-labelledby="cmpDropdown">
+                    <a class="dropdown-item" href="{{ url_for('class_info', class_name='Compounding') }}">Lesson 1</a>
+                    <a class="dropdown-item" href="{{ url_for('class_info', class_name='Compounding 2') }}">Lesson 2</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('quiz_info', quiz_name='Final Quiz') }}">Final Quiz</a>
+            </li>
+        </ul>
     </div>
-  </body>
+</nav>
+
+<div class="container center">
+    {% block content %}
+    {% endblock %}
+    <br><hr>
+</div>
+
+<!-- Bootstrap and Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" defer></script>
+<script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+</body>
 </html>
