@@ -69,15 +69,13 @@ body {
 
 .hero-text {
   margin-top: 60px;
-  font-size: 88px;
-  /*font-weight: bold;*/
+  font-size: 80px;
   font-family: Arial;
 }
 
 .hero-subtext {
   margin-top: 10px;
   font-size: 28px;
-  /*font-weight: bold;*/
   font-family: Arial;
 }
 
@@ -165,7 +163,7 @@ body {
 
 .content {
   margin: auto;
-  width: 800px;
+  width: auto;
   padding: 10px;
   align-items: center;
   justify-content: center;
