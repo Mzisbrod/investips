@@ -75,7 +75,7 @@ quiz_content = {
         'title': 'Investment Basics Quiz',
         'questions': [
             {
-                "questionId": "01",
+                "questionId": "1",
                 'question_text': "Would you rather have a tiny piece of a big, successful company or own a big chunk "
                                  "of a tiny, unknown company?",
                 'options': ['Tiny piece of a big company', 'Own big chunk of a tiny company'],
@@ -89,7 +89,7 @@ quiz_content = {
                 'is_pop_quiz': True
             },
             {
-                "questionId": "02",
+                "questionId": "2",
                 'question_text': "What does buying shares in a company make you?",
                 'options': ['A) A customer', 'B) An employee', 'C) An owner', 'D) A creditor'],
                 'solution': 'C) An owner',
@@ -103,7 +103,7 @@ quiz_content = {
                     },
             },
             {
-                "questionId": "03",
+                "questionId": "3",
                 'question_text': "If you lend money to the government by buying bonds, what do you usually get in return?",
                 'options': ['A) Shares in the government', 'B) Regular interest payments',
                             'C) Free government services', 'D) Company stock'],
@@ -116,7 +116,7 @@ quiz_content = {
                     }
             },
             {
-                "questionId": "04",
+                "questionId": "4",
                 'question_text': "Which of these is likely the safest investment?",
                 'options': ['A) Cryptocurrency', 'B) Bonds', 'C) Stocks', 'D) Starting your own business'],
                 'solution': 'B) Bonds',
@@ -136,7 +136,7 @@ quiz_content = {
         'title': 'Risk vs Reward Quiz',
         'questions': [
             {
-                "questionId": "05",
+                "questionId": "5",
                 'question_text': "Would you rather win $50 for sure or flip a coin for a chance to win $100?",
                 'options': ['Take the $50', 'Flip the coin'],
                 'explanation': {
@@ -146,7 +146,7 @@ quiz_content = {
                 'is_pop_quiz': True
             },
             {
-                "questionId": "06",
+                "questionId": "6",
                 'question_text': "What does a high-risk investment typically offer?",
                 'options': ['A) Lower returns', 'B) Higher returns', 'C) More stability', 'D) Less excitement'],
                 'solution': 'B) Higher returns',
@@ -158,7 +158,7 @@ quiz_content = {
                 }
             },
             {
-                "questionId": "07",
+                "questionId": "7",
                 'question_text': "If a friend offers you a part in their startup, which is true?",
                 'options': ['A) It’s totally safe', 'B) It could make you rich', 'C) You’ll definitely lose money',
                             'D) B & C'],
@@ -171,7 +171,7 @@ quiz_content = {
                 }
             },
             {
-                "questionId": "08",
+                "questionId": "8",
                 'question_text': "What should you consider when choosing an investment?",
                 'options': ['A) Color of the logo', 'B) Risk and your comfort with it', 'C) If your friends like it',
                             'D) The weather'],
@@ -194,7 +194,7 @@ quiz_content = {
         'title': 'Power of Compounding Quiz',
         'questions': [
             {
-                "questionId": "09",
+                "questionId": "9",
                 'question_text': "Would you want your money to grow just by what you add each year, or each dollar earned brings in more dollars over time?",
                 'options': ['Just my additions', 'Money making more money'],
                 'explanation': {
@@ -296,16 +296,21 @@ quiz_content = {
 }
 
 score = {
-    'Risk vs. Reward Quiz': 0,
-    'Compounding Quiz': 0,
-    'Final Quiz': 0,
-
-}
-
-score_to_class = {
-    'Risk vs. Reward Quiz': 'Risk vs. Reward',
-    'Compounding Quiz': 'Compounding',
-    'Final Quiz': 'stocks',
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "14": 0,
+    "15": 0
 }
 
 app = Flask(__name__)
@@ -343,21 +348,15 @@ def quiz_info(quiz_name):
 
 @app.route('/submit_answer/<question_id>', methods=['POST'])
 def submit_answer(question_id):
-    quiz_name = request.form['quizName']
-    print(quiz_name)
-    selected_option = request.form['selectedOption']
-    print(selected_option)
-    quiz = quiz_content.get(quiz_name)
-    print(quiz)
+    data = request.get_json()  # Use get_json() if you're sending JSON data
+    quiz_name = str(data['quizName'])
+    selected_option = data['selectedOption']
 
-    if not quiz:
-        return jsonify({"error": "Quiz not found"}), 404
-
-    question = next((q for q in quiz['questions'] if q['id'] == question_id), None)
-    if question:
-        correct = selected_option == question['solution']
+    if quiz_name:
+        # if quiz_name in score:
+        score[quiz_name] = 1  # increment score
         # Update the score logic here, for example using session or database
-        return jsonify(correct=correct), 200
+        return jsonify({"message": "Score updated successfully", "updatedScore": score[str(quiz_name)]}), 200
     else:
         return jsonify({"error": "Question not found"}), 404
 
@@ -365,7 +364,7 @@ def submit_answer(question_id):
 @app.route('/results')
 def results():
     user_score = sum(score.values()) / len(score.keys()) * 100
-    return render_template('results.html', results=score, score=user_score, score_class=score_to_class)
+    return render_template('results.html', results=score, score=user_score)
 
 
 if __name__ == '__main__':

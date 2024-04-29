@@ -60,28 +60,25 @@ function checkAnswer(selectedOption, correctOption, element, isPopQuiz, question
             feedbackElement.innerHTML = 'Correct! ' + element.getAttribute('data-explanation');
             feedbackElement.style.color = 'green'
 
-
             console.log(questionId)
 
             $.ajax({
-            type: "POST",
-            url: '/submit_answer/' + questionId, // Suggest changing URL to reflect score updating
-            data: {
-                quizName: '{{ content.title }}',
-                questionId: questionId, // Passing question ID to server
-                correct: true // Indicating this was a correct answer
-            },
-            success: function(response) {
-                // Update the score display based on server response
-                console.log("sent to backend")
-                updateScoreDisplay(response.updatedScore);
-            },
-            error: function(xhr) {
-                console.error('Error:', xhr.responseText);
-                feedbackElement.innerHTML = 'Error updating score. Please try again.';
-                feedbackElement.style.color = 'red';
-            }
-        });
+                type: "POST",
+                url: '/submit_answer/' + questionId,
+                contentType: 'application/json', // Setting for JSON
+                data: JSON.stringify({
+                    quizName: questionId,
+                    selectedOption: selectedOption
+                }),
+                success: function(response) {
+                    console.log("Response received");
+                    updateScoreDisplay(response.correct);
+                },
+                error: function(xhr) {
+                    console.error('Error:', xhr.responseText);
+                }
+            });
+
         } else {
             feedbackElement.innerHTML = 'Not correct: ' + element.getAttribute('data-explanation');
             feedbackElement.style.color = 'red'
