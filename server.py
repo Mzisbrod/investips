@@ -6,7 +6,7 @@ classes_content = {
         'title': "What's a Stock?",
         'text_content': 'A stock is like a 🍰 of a company\'s 🎂, representing a share of ownership and a taste of '
                         'its 💰or losses.',
-        'media_content': 'https://www.youtube.com/embed/JrGp4ofULzQ?si=_sKwRkAQZNEPJI2T',
+        'media_content': 'https://www.youtube.com/embed/CF_bij95mAA',
         'next_module': "basics",
         'next': "bonds"
     },
@@ -15,7 +15,7 @@ classes_content = {
         'title': "What's a Bond?",
         'text_content': 'Imagine lending money to your high school for a new skate park. They promise to pay you back '
                         'with interest. Safe, steady, but not gonna make you rich quick.',
-        'media_content': "https://www.youtube.com/embed/-0HQltcbglw?si=mquEtrO9jqmJx79l",
+        'media_content': "https://www.youtube.com/embed/PKjy5j9VNdE",
         'prev': "stocks",
         'prev_module': "classes_content",
         'next': "Basics Quiz",
@@ -27,7 +27,7 @@ classes_content = {
         'text_content': 'This concept like the seesaw in the playground. If one side goes up, the other comes '
                         'down. In investing, if you take bigger risks, the potential for big rewards goes up. But so '
                         'does the chance of taking a hit.',
-        'media_content': "https://www.youtube.com/embed/X15rluFUs2M?si=1Y0kdBuOCupaFLqB&amp;start=72",
+        'media_content': "https://www.youtube.com/embed/j1TioBRFvwo",
         'prev': "bonds",
         'prev_module': "classes_content",
         'next': "Risk vs. Reward Quiz",
