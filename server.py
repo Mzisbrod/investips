@@ -36,7 +36,7 @@ classes_content = {
     'Risk vs. Reward 2': {
         'module': "classes_content",
         'title': 'Risk vs. Reward',
-        'text_content': '<Add content here>',
+        'text_content': "Balance your portfolio, so that you don't get wiped out!",
         'media_content': "https://www.youtube.com/embed/O-QwiAGtu88",
         'prev': "Risk vs. Reward",
         'next': "Risk vs. Reward Quiz",
@@ -58,7 +58,7 @@ classes_content = {
     'Compounding 2': {
         'module': "classes_content",
         'title': 'Compounding',
-        'text_content': '<Add content here>',
+        'text_content': '"The most powerful force in the world is compound interest." - Albert Einstein',
         'media_content': "https://www.youtube.com/embed/V7WLYoQNu80",
         'prev': "Risk vs. Reward",
         'next': "Compounding Quiz",
