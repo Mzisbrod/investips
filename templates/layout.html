@@ -29,7 +29,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="basicDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Basics
                 </a>
-                <div class="dropdown-menu" aria-labelledby="basicDropdown">
+                <div class="dropdown-menu center" aria-labelledby="basicDropdown">
                     <a class="dropdown-item" href="{{ url_for('class_info', class_name='stocks') }}">Stocks</a>
                     <a class="dropdown-item" href="{{ url_for('class_info', class_name='bonds') }}">Bonds</a>
                 </div>
@@ -38,7 +38,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="rvrDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Risk vs. Reward
                 </a>
-                <div class="dropdown-menu" aria-labelledby="rvrDropdown">
+                <div class="dropdown-menu center" aria-labelledby="rvrDropdown">
                     <a class="dropdown-item" href="{{ url_for('class_info', class_name='Risk vs. Reward') }}">Lesson 1</a>
                     <a class="dropdown-item" href="{{ url_for('class_info', class_name='Risk vs. Reward 2') }}">Lesson 2</a>
                 </div>
@@ -59,7 +59,7 @@
     </div>
 </nav>
 
-<div class="container center">
+<div class="container-fluid sm-10">
     {% block content %}
     {% endblock %}
     <br><hr>

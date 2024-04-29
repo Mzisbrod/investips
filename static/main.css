@@ -37,13 +37,22 @@ body {
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-  .sidebar {
+    .sidebar {
     width: 100%;
     height: auto;
     position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
+    }
+
+    .sidebar a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+    .content {
+        margin-top: 0; /* Adjust layout to remove unnecessary spacing */
+        width: auto; /* Adjust content width */
+    }
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
@@ -54,12 +63,20 @@ body {
   }
 }
 
+.content {
+    margin-top: 0; /* Adjust layout to remove unnecessary spacing */
+    width: auto; /* Adjust content width */
+  }
+
 .container-fluid, .row {
   height: 100%; /* Ensures that container and row are also taking full height */
 }
 
 .center {
-  text-align: center;
+    text-align: center;
+    width: 100%;
+    /*margin: auto;*/
+    padding: 20px;
 }
 
 .lesson_photo{
@@ -68,16 +85,14 @@ body {
 }
 
 .hero-text {
-  margin-top: 60px;
-  font-size: 88px;
-  /*font-weight: bold;*/
+  margin-top: 20px;
+  font-size: 4rem; /* Large screens */
   font-family: Arial;
 }
 
 .hero-subtext {
-  margin-top: 10px;
-  font-size: 28px;
-  /*font-weight: bold;*/
+  margin-top: 20px;
+  font-size: 1.5rem; /* Large screens */
   font-family: Arial;
 }
 
@@ -165,7 +180,7 @@ body {
 
 .content {
   margin: auto;
-  width: 800px;
+  width: auto;
   padding: 10px;
   align-items: center;
   justify-content: center;
@@ -232,9 +247,8 @@ body {
 }
 
 .iframe_styling{
-    width: 320px; 
+    width: 285px;
     height: 450px;
-    display: block;
     margin: auto;
 }
 
