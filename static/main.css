@@ -256,3 +256,9 @@ body {
 .navbar .dropdown-toggle::after {
     display: none;
 }
+
+#intro_styling{
+  margin: 20px;
+
+
+}
