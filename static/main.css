@@ -37,22 +37,13 @@ body {
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-    .sidebar {
+  .sidebar {
     width: 100%;
     height: auto;
     position: relative;
-    }
-
-    .sidebar a {
-        float: left;
-    }
-    div.content {
-        margin-left: 0;
-    }
-    .content {
-        margin-top: 0; /* Adjust layout to remove unnecessary spacing */
-        width: auto; /* Adjust content width */
-    }
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
 }
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
@@ -63,20 +54,12 @@ body {
   }
 }
 
-.content {
-    margin-top: 0; /* Adjust layout to remove unnecessary spacing */
-    width: auto; /* Adjust content width */
-  }
-
 .container-fluid, .row {
   height: 100%; /* Ensures that container and row are also taking full height */
 }
 
 .center {
-    text-align: center;
-    width: 100%;
-    /*margin: auto;*/
-    padding: 20px;
+  text-align: center;
 }
 
 .lesson_photo{
@@ -85,14 +68,14 @@ body {
 }
 
 .hero-text {
-  margin-top: 20px;
-  font-size: 4rem; /* Large screens */
+  margin-top: 60px;
+  font-size: 80px;
   font-family: Arial;
 }
 
 .hero-subtext {
-  margin-top: 20px;
-  font-size: 1.5rem; /* Large screens */
+  margin-top: 10px;
+  font-size: 28px;
   font-family: Arial;
 }
 
@@ -171,7 +154,7 @@ body {
 }
 
 .content-text {
-  font-size: 24px;
+  font-size: 18px;
   font-family: Arial;
   padding: 20px;
   width: auto;
@@ -247,8 +230,9 @@ body {
 }
 
 .iframe_styling{
-    width: 285px;
+    width: 320px; 
     height: 450px;
+    display: block;
     margin: auto;
 }
 
@@ -257,8 +241,25 @@ body {
     display: none;
 }
 
+<<<<<<< HEAD
 #intro_styling{
   margin: 20px;
 
 
+=======
+.quiz-retry {
+    background-color: rgb(49, 120, 49);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px auto; /* Auto margins on both sides to center the buttons horizontally */
+    font-size: 22px;
+    text-align: center; /* Center the text horizontally */
+    display: block; /* Make each link a block element */
+    width: 80%; /* Adjust width as needed or use a fixed width */
+    text-decoration: none;
+}
+.quiz-retry:active {
+    color: white;
+>>>>>>> f5c9ffa22c7eaddcf045703d2a8d0d671bc3233c
 }

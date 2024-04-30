@@ -1,34 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
-
-    <h1>Hello</h1>
-    <p>{{ results }}</p>
-    <p>your score is %{{ score | round }}</p>
-    {% for quiz in results %}
-        {% if results[quiz] == 0 %}
-            <hr>
-            <a href="{{ url_for('class_info', class_name=score_class[quiz])}}">
-                Try learning about {{ score_class[quiz] }} again
+<div class="center results">
+    <h1>Results</h1>
+    <h2>Your score is {{ score | round }}%</h2>
+    <div class="button-container">
+    {% if classes | length == 0 %}
+        <h2>Good Job!</h2>
+    {% else %}
+        {% for quiz in classes %}
+            <a class="quiz-retry row" href="{{ url_for('class_info', class_name=quiz) }}">
+                {% if quiz == "stocks" %}
+                    Try Basics again
+                {% else %}
+                    Try {{ quiz | capitalize }} again
+                {% endif %}
             </a>
-        {% endif %}
-    {% endfor %}
-    <hr>
-<!-- quiz_results.html -->
-{% for explanation in explanations %}
-    <div>
-        <h4>{{ explanation.question }}</h4>
-        <p>Your choice: {{ explanation.selected }}</p>
-        {% if explanation.explanation %}
-            <p>Explanation: {{ explanation.explanation }}</p>
-        {% elif explanation.correct %}
-            <p>Correct!</p>
-        {% else %}
-            <p>Incorrect.</p>
-        {% endif %}
+        {% endfor %}
+    {% endif %}
     </div>
-{% endfor %}
-
-<iframe class='iframe_styling media' src="https://www.youtube.com/embed/-8_z-pB0Jk8" title="YouTube video player" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen ></iframe>
-
-
+</div>
 {% endblock %}
