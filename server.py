@@ -312,6 +312,23 @@ score = {
     "14": 0,
     "15": 0
 }
+score_to_class = {
+    "1": "stocks",
+    "2": "stocks",
+    "3": "stocks",
+    "4": "stocks",
+    "5": "Risk vs. Reward",
+    "6": "Risk vs. Reward",
+    "7": "Risk vs. Reward",
+    "8": "Risk vs. Reward",
+    "9": "Compounding",
+    "10": "Compounding",
+    "11": "Compounding",
+    "12": "Compounding",
+    "13": "Final Quiz",
+    "14": "Final Quiz",
+    "15": "Final Quiz"
+}
 
 app = Flask(__name__)
 
@@ -350,7 +367,6 @@ def quiz_info(quiz_name):
 def submit_answer(question_id):
     data = request.get_json()  # Use get_json() if you're sending JSON data
     quiz_name = str(data['quizName'])
-    selected_option = data['selectedOption']
 
     if quiz_name:
         # if quiz_name in score:
@@ -363,8 +379,12 @@ def submit_answer(question_id):
 
 @app.route('/results')
 def results():
+    redo_quiz = set()
     user_score = sum(score.values()) / len(score.keys()) * 100
-    return render_template('results.html', results=score, score=user_score)
+    for quiz in score:
+        if score[quiz] == 0 and int(quiz) < 13:
+            redo_quiz.add((score_to_class[quiz]))
+    return render_template('results.html', results=score, score=user_score, classes=redo_quiz)
 
 
 if __name__ == '__main__':

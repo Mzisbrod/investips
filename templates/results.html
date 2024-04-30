@@ -1,31 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
-
-    <h1>Hello</h1>
-    <p>{{ results }}</p>
-    <p>your score is %{{ score | round }}</p>
-    {% for quiz in results %}
-        {% if results[quiz] == 0 %}
-            <hr>
-            <a href="{{ url_for('class_info', class_name=score_class[quiz])}}">
-                Try learning about {{ score_class[quiz] }} again
+<div class="center results">
+    <h1>Results</h1>
+    <h2>your score is %{{ score | round }}</h2>
+    <div class="button-container">
+        {% for quiz in classes %}
+            <a class="quiz-retry row" href="{{ url_for('class_info', class_name=quiz) }}">
+                Try {{ quiz }} again
             </a>
-        {% endif %}
-    {% endfor %}
-    <hr>
-<!-- quiz_results.html -->
-{% for explanation in explanations %}
-    <div>
-        <h4>{{ explanation.question }}</h4>
-        <p>Your choice: {{ explanation.selected }}</p>
-        {% if explanation.explanation %}
-            <p>Explanation: {{ explanation.explanation }}</p>
-        {% elif explanation.correct %}
-            <p>Correct!</p>
-        {% else %}
-            <p>Incorrect.</p>
-        {% endif %}
+        {% endfor %}
     </div>
-{% endfor %}
-
+</div>
 {% endblock %}

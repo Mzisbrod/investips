@@ -154,7 +154,7 @@ body {
 }
 
 .content-text {
-  font-size: 24px;
+  font-size: 18px;
   font-family: Arial;
   padding: 20px;
   width: auto;
@@ -239,4 +239,20 @@ body {
 /* Remove arrow next to dropdown in navbar*/
 .navbar .dropdown-toggle::after {
     display: none;
+}
+
+.quiz-retry {
+    background-color: rgb(49, 120, 49);
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px auto; /* Auto margins on both sides to center the buttons horizontally */
+    font-size: 22px;
+    text-align: center; /* Center the text horizontally */
+    display: block; /* Make each link a block element */
+    width: 80%; /* Adjust width as needed or use a fixed width */
+    text-decoration: none;
+}
+.quiz-retry:active {
+    color: white;
 }

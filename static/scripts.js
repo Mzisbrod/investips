@@ -47,7 +47,7 @@ function checkAnswer(selectedOption, correctOption, element, isPopQuiz, question
     const feedbackElement = parent.nextElementSibling; // Assumes feedback div follows the options div
 
     console.log(element.getAttribute('data-explanation')); // Debug: Log the explanation attribute
-
+    /*console.log(quiz_title)
     /*element.style.backgroundColor = 'lightblue'; // Highlight the selected option*/
 
 
