@@ -13,8 +13,9 @@ classes_content = {
     'bonds': {
         'module': "basics",
         'title': "What's a Bond?",
-        'text_content': 'Imagine lending money to your high school for a new skate park. They promise to pay you back '
-                        'with interest. Safe, steady, but not gonna make you rich quick.',
+        'text_content': 'Bonds are like a loan. You give someone money up front, '
+                        'and they pay you back increments every year. At the end of the loan period, they give you back the original amount.'
+                        ' They are safe and steady, but they won\'t make you rich quick.',
         'media_content': "https://www.youtube.com/embed/PKjy5j9VNdE",
         'prev': "stocks",
         'prev_module': "classes_content",
@@ -24,7 +25,7 @@ classes_content = {
     'Risk vs. Reward': {
         'module': "classes_content",
         'title': 'Risk vs. Reward',
-        'text_content': 'This concept like the seesaw in the playground. If one side goes up, the other comes '
+        'text_content': 'This concept is like the seesaw in the playground. If one side goes up, the other comes '
                         'down. In investing, if you take bigger risks, the potential for big rewards goes up. But so '
                         'does the chance of taking a hit.',
         'media_content': "https://www.youtube.com/embed/j1TioBRFvwo",
@@ -35,8 +36,9 @@ classes_content = {
     },
     'Risk vs. Reward 2': {
         'module': "classes_content",
-        'title': 'Risk vs. Reward (2)',
-        'text_content': "Balance your portfolio, so that you don't get wiped out!",
+        'title': 'Compounding',
+        'text_content': "When making investments, you should balance your portfolio betweeen stocks, bonds, and other" 
+                        "assets so that you don't get wiped out! That's called diversification.",
         'media_content': "https://www.youtube.com/embed/O-QwiAGtu88",
         'prev': "Risk vs. Reward",
         'prev_module': "classes_content",
@@ -59,7 +61,8 @@ classes_content = {
     'Compounding 2': {
         'module': "classes_content",
         'title': 'Power of Compounding (2)',
-        'text_content': '"The most powerful force in the world is compound interest." - Albert Einstein',
+        'text_content': 'As Albert Einstein said, "The most powerful force in the world is compound interest." '
+                        'Putting a bit of money to work every year can give you huge returns if you\'re patient!',
         'media_content': "https://www.youtube.com/embed/V7WLYoQNu80",
         'prev': "Compounding",
         'prev_module': "classes_content",
