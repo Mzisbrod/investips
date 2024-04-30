@@ -241,12 +241,6 @@ body {
     display: none;
 }
 
-<<<<<<< HEAD
-#intro_styling{
-  margin: 20px;
-
-
-=======
 .quiz-retry {
     background-color: rgb(49, 120, 49);
     color: white;
@@ -261,5 +255,4 @@ body {
 }
 .quiz-retry:active {
     color: white;
->>>>>>> f5c9ffa22c7eaddcf045703d2a8d0d671bc3233c
 }
