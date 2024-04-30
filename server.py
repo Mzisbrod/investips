@@ -76,7 +76,7 @@ quiz_content = {
         'questions': [
             {
                 "questionId": "1",
-                'question_text': "Would you rather have a tiny piece of a big, successful company or own a big chunk "
+                'question_text': "Brainteaser: Would you rather have a tiny piece of a big, successful company or own a big chunk "
                                  "of a tiny, unknown company?",
                 'options': ['Tiny piece of a big company', 'Own big chunk of a tiny company'],
                 'explanation': {
@@ -137,7 +137,7 @@ quiz_content = {
         'questions': [
             {
                 "questionId": "5",
-                'question_text': "Would you rather win $50 for sure or flip a coin for a chance to win $100?",
+                'question_text': "Brainteaser: Would you rather win $50 for sure or flip a coin for a chance to win $100?",
                 'options': ['Take the $50', 'Flip the coin'],
                 'explanation': {
                     'Take the $50': '🎉 Guaranteed Cash! Like scoring a guaranteed VIP concert ticket. It\'s not the front row, but you’re definitely in the party!',
@@ -195,7 +195,7 @@ quiz_content = {
         'questions': [
             {
                 "questionId": "9",
-                'question_text': "Would you want your money to grow just by what you add each year, or each dollar earned brings in more dollars over time?",
+                'question_text': "Brainteaser: Would you want your money to grow just by what you add each year, or each dollar earned brings in more dollars over time?",
                 'options': ['Just my additions', 'Money making more money'],
                 'explanation': {
                     'Just my additions': '🔄 Consistent Adds! Like keeping your social media feed fresh by only your posts. Steady and totally under your control!',
@@ -296,15 +296,15 @@ quiz_content = {
 }
 
 score = {
-    "1": 0,
+    "1": 1,
     "2": 0,
     "3": 0,
     "4": 0,
-    "5": 0,
+    "5": 1,
     "6": 0,
     "7": 0,
     "8": 0,
-    "9": 0,
+    "9": 1,
     "10": 0,
     "11": 0,
     "12": 0,
@@ -330,11 +330,15 @@ score_to_class = {
     "15": "Final Quiz"
 }
 
+redo_quiz = set()
+
 app = Flask(__name__)
 
 
 @app.route('/')
 def main():
+    print(redo_quiz)
+    redo_quiz.clear()
     return render_template('main.html')
 
 
@@ -379,11 +383,13 @@ def submit_answer(question_id):
 
 @app.route('/results')
 def results():
-    redo_quiz = set()
     user_score = sum(score.values()) / len(score.keys()) * 100
-    for quiz in score:
+    print("score dict", score)
+    for quiz in score.keys():
+        print("quiz", quiz)
         if score[quiz] == 0 and int(quiz) < 13:
             redo_quiz.add((score_to_class[quiz]))
+    print(redo_quiz)
     return render_template('results.html', results=score, score=user_score, classes=redo_quiz)
 
 

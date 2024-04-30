@@ -2,13 +2,21 @@
 {% block content %}
 <div class="center results">
     <h1>Results</h1>
-    <h2>your score is %{{ score | round }}</h2>
+    <h2>Your score is {{ score | round }}%</h2>
     <div class="button-container">
+    {% if classes | length == 0 %}
+        <h2>Good Job!</h2>
+    {% else %}
         {% for quiz in classes %}
             <a class="quiz-retry row" href="{{ url_for('class_info', class_name=quiz) }}">
-                Try {{ quiz }} again
+                {% if quiz == "stocks" %}
+                    Try Basics again
+                {% else %}
+                    Try {{ quiz | capitalize }} again
+                {% endif %}
             </a>
         {% endfor %}
+    {% endif %}
     </div>
 </div>
 {% endblock %}

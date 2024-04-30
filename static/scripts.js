@@ -80,7 +80,7 @@ function checkAnswer(selectedOption, correctOption, element, isPopQuiz, question
             });
 
         } else {
-            feedbackElement.innerHTML = 'Not correct: ' + element.getAttribute('data-explanation');
+            feedbackElement.innerHTML = 'Incorrect: ' + element.getAttribute('data-explanation');
             feedbackElement.style.color = 'red'
         }
     }
