@@ -36,8 +36,8 @@ classes_content = {
     },
     'Risk vs. Reward 2': {
         'module': "classes_content",
-        'title': 'Compounding',
-        'text_content': "When making investments, you should balance your portfolio betweeen stocks, bonds, and other" 
+        'title': 'Risk vs. Reward (2)',
+        'text_content': "When making investments, you should balance your portfolio betwe\een stocks, bonds, and other " 
                         "assets so that you don't get wiped out! That's called diversification.",
         'media_content': "https://www.youtube.com/embed/O-QwiAGtu88",
         'prev': "Risk vs. Reward",
