@@ -25,9 +25,9 @@ classes_content = {
     'Risk vs. Reward': {
         'module': "classes_content",
         'title': 'Risk vs. Reward',
-        'text_content': 'This concept is like the seesaw in the playground. If one side goes up, the other comes '
-                        'down. In investing, if you take bigger risks, the potential for big rewards goes up. But so '
-                        'does the chance of taking a hit.',
+        'text_content': 'Risk and reward move together. As your risk increases, so ' 
+                        'does your reward! It\'s important to understand your ability ' 
+                        'to stomach a loss, which is called your risk tolerance. ',
         'media_content': "https://www.youtube.com/embed/j1TioBRFvwo",
         'prev': "bonds",
         'prev_module': "classes_content",
@@ -48,10 +48,7 @@ classes_content = {
     'Compounding': {
         'module': "classes_content",
         'title': 'Power of Compounding',
-        'text_content': 'Think of compounding as the ultimate collab on TikTok. You post a video that does well, '
-                        'so it starts earning likes and shares. But here’s the kicker—each new like and share can '
-                        'lead to even more likes and shares. It’s like a snowball rolling down a hill, growing bigger '
-                        'and faster as it goes. That’s your investment growing!',
+        'text_content': 'Compouding is a magical concept. By investing your money in interest bearing assets, your money can accumulate a lot more over time!',
         'media_content': "https://www.youtube.com/embed/G2ruiumT8xc",
         'prev': "Risk vs. Reward",
         'prev_module': "classes_content",

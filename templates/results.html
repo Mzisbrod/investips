@@ -6,7 +6,8 @@
     <div class="button-container">
     {% if classes | length == 0 %}
         <h2>Good Job!</h2>
-        <iframe>        </iframe>
+        <iframe class='iframe_styling media' src="https://www.youtube.com/embed/-8_z-pB0Jk8" title="YouTube video player" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen ></iframe>
+
     {% else %}
         {% for quiz in classes %}
             <a class="quiz-retry row" href="{{ url_for('class_info', class_name=quiz) }}">
